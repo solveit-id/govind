@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Govind Abra Enterprise</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Tailwind CDN -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Aboreto&display=swap" rel="stylesheet">
+        <!-- Leaflet CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+        <!-- AOS CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+        <style>
+        body { font-family: 'Poppins', sans-serif; }
+        </style>
+    </head>
+    <body class="bg-[#FFFFFF] text-slate-800 overflow-x-hidden">
+
+        <!-- NAVBAR -->
+        <header class="bg-white" data-aos="fade-down">
+            <div class="max-w-6xl mx-auto px-4 lg:px-0">
+                <div class="flex items-center justify-between py-3">
+
+                    <!-- LEFT: Logo + Brand -->
+                    <div class="flex items-center gap-3 flex-shrink-0">
+                        <img src="assets/Logo.png" alt="Govind Logo" class="h-10 w-auto object-contain"/>
+                        <span class="text-base font-semibold text-[#8B5A2B]">
+                            Govinda
+                        </span>
+                    </div>
+
+                    <!-- CENTER NAV -->
+                    <nav class="hidden lg:flex items-center justify-center flex-grow gap-10 text-[14px] text-slate-800">
+                        <a href="#" class="hover:text-black transition">Home</a>
+                        <a href="#" class="hover:text-black transition">About</a>
+                        <a href="#" class="hover:text-black transition">Certification</a>
+                        <a href="#" class="hover:text-black transition">Benefits</a>
+                        <a href="#" class="hover:text-black transition">Services</a>
+                        <a href="#" class="hover:text-black transition">Contact</a>
+                    </nav>
+
+                    <!-- RIGHT AUTH -->
+                    <div class="hidden lg:flex items-center gap-3 text-[13px] ml-6 flex-shrink-0">
+                        <button class="px-4 py-1.5 border border-slate-300 rounded-md hover:bg-slate-50 transition">
+                            Log In
+                        </button>
+                        <button class="px-4 py-1.5 rounded-md bg-slate-900 text-white hover:bg-black transition">
+                            Sign Up
+                        </button>
+                    </div>
+
+                    <!-- HAMBURGER MOBILE -->
+                    <button id="navbarToggle" class="lg:hidden inline-flex items-center justify-center p-2 rounded-md border border-slate-300 text-slate-700 ml-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16"/>
+                        </svg>
+                    </button>
+
+                </div>
+
+                <!-- MOBILE MENU -->
+                <div id="mobileMenu" class="lg:hidden hidden pb-4">
+                    <nav class="flex flex-col gap-3 pt-3 text-[14px] text-slate-800">
+                        <a href="#" class="hover:text-black transition">Home</a>
+                        <a href="#" class="hover:text-black transition">About</a>
+                        <a href="#" class="hover:text-black transition">Certification</a>
+                        <a href="#" class="hover:text-black transition">Benefits</a>
+                        <a href="#" class="hover:text-black transition">Services</a>
+                        <a href="#" class="hover:text-black transition">Contact</a>
+                    </nav>
+
+                    <div class="flex items-center gap-3 mt-4 text-[13px]">
+                        <button
+                        class="flex-1 px-4 py-1.5 border border-slate-300 rounded-md
+                        hover:bg-slate-50 transition"
+                        >
+                        Log In
+                        </button>
+                        <button
+                        class="flex-1 px-4 py-1.5 rounded-md bg-slate-900 text-white
+                        hover:bg-black transition"
+                        >
+                        Sign Up
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- HERO -->
+        <section class="mt-4">
+            <div class="max-w-6xl mx-auto px-4 lg:px-0">
+
+                <div class="bg-[#C1DCDC] rounded-[20px] flex flex-col lg:flex-row items-stretch shadow-[0_18px_40px_rgba(0,0,0,0.12)] pb-[40px]" data-aos="fade-up">
+
+                    <!-- LEFT CONTENT -->
+                    <div class="w-full lg:w-1/2 px-8 lg:px-10 py-10" data-aos="fade-up">
+                        <h1 class="text-[40px] sm:text-[56px] lg:text-[65px] leading-snug font-normal font-[Aboreto]">
+                        GOVIND ABRA<br>ENTERPRISE
+                        </h1>
+
+                        <!-- STATS -->
+                        <div class="flex items-center space-x-10 mt-8 text-[13px]" data-aos="fade-up" data-aos-delay="150">
+                            <div>
+                                <p class="text-2xl font-semibold leading-tight">10+</p>
+                                <p class="mt-1 text-[11px] text-slate-900">Certification</p>
+                            </div>
+
+                            <div class="h-12 w-px bg-slate-900/40"></div>
+
+                            <div>
+                                <p class="text-2xl font-semibold leading-tight">100+</p>
+                                <p class="mt-1 text-[11px] text-slate-900">Customers</p>
+                            </div>
+                        </div>
+
+                        <!-- SEARCH BAR -->
+                        <div class="mt-8" data-aos="fade-up" data-aos-delay="250">
+                            <div class="max-w-md bg-white rounded-[12px] flex items-center overflow-hidden shadow-sm">
+                                <input type="text" placeholder="What are you looking for?" class="flex-1 px-4 py-3 text-[13px] outline-none placeholder:text-slate-400"/>
+                                <button class="h-12 w-12 flex items-center justify-center rounded-[12px] rounded-l-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 5a6 6 0 100 12 6 6 0 000-12z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT ILLUSTRATION -->
+                    <div class="relative w-full lg:w-1/2 h-full pr-14 py-6 flex justify-end" data-aos="fade-up">
+                        <!-- LOGO HERO → hanya muncul mulai lg (>=1024px) -->
+                        <img src="assets/hero1.png" alt="Govind Abra Logo" class="hidden lg:block absolute bottom-6 right-10 w-[330px] lg:w-[360px] drop-shadow-[0_30px_70px_rgba(0,0,0,0.45)] translate-y-[483px] mr-5"/>
+
+                        <!-- HERO 2 -->
+                        <img src="assets/hero2.png" alt="" class="hidden lg:block absolute top-[20px] right-[20px] w-[80px]"/>
+
+                        <!-- HERO 3 -->
+                        <img src="assets/hero3.png" alt="" class="hidden lg:block absolute top-[300px] right-[450px] w-[170px]"/>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ABOUT -->
+        <section class="mt-40">
+            <!-- Heading -->
+            <div class="max-w-6xl mx-auto text-center px-4 lg:px-0" data-aos="fade-up">
+                <h2 class="text-2xl md:text-3xl font-semibold text-slate-900">
+                    About<span class="text-[#C1DCDC]">Us</span>
+                </h2>
+            </div>
+
+            <!-- Content -->
+            <div class="max-w-6xl mx-auto mt-12 px-4 lg:px-0">
+                <div class="flex flex-col md:flex-row items-center md:items-center gap-12">
+                    <!-- LEFT IMAGE -->
+                    <div class="w-full md:w-1/2 flex justify-start" data-aos="zoom-in">
+                        <div class="bg-white rounded-[26px] shadow-[0_18px_40px_rgba(15,23,42,0.12)] p-4">
+                            <div class="rounded-[20px] overflow-hidden">
+                                <img src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=800" class="w-full h-[260px] md:h-[300px] object-cover" alt="Building">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT TEXT -->
+                    <div class="w-full md:w-1/2" data-aos="fade-left">
+                        <h3 class="text-xl md:text-2xl font-semibold text-slate-800 mb-4">
+                        Govind Abra Enterprise
+                        </h3>
+
+                        <p class="text-[12px] text-slate-600 leading-relaxed mb-3">
+                        Govind Abra Enterprise is a professional training and certification institution committed
+                        to developing globally competitive human resources.
+                        </p>
+
+                        <p class="text-[12px] text-slate-600 leading-relaxed">
+                        We provide technology-based education, international certification, and strategic consulting
+                        aligned with government standards — empowering professionals to excel in the digital era.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PROGRAMS -->
+        <section class="mt-40">
+            <!-- Heading -->
+            <div class="max-w-6xl mx-auto text-center px-4 lg:px-0" data-aos="fade-up">
+                <h2 class="text-2xl md:text-3xl font-semibold text-slate-900">
+                    International Certification <span class="text-[#C1DCDC]">Programs</span>
+                </h2>
+            </div>
+
+            <!-- Cards -->
+            <div class="max-w-6xl mx-auto mt-10 px-4 lg:px-0 flex flex-wrap justify-center gap-8">
+                <!-- Card 1 -->
+                <div class="w-full sm:w-[260px] md:w-[280px] bg-white rounded-[18px] shadow-[0_20px_60px_rgba(15,23,42,0.12)] overflow-hidden" data-aos="fade-up" data-aos-delay="0">
+                    <div class="h-[170px] md:h-[180px]">
+                        <img src="https://images.pexels.com/photos/1181649/pexels-photo-1181649.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Communication & Services" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="py-4 text-center">
+                        <p class="text-[13px] font-semibold text-slate-900">
+                        Communication &amp; Services
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="w-full sm:w-[260px] md:w-[280px] bg-white rounded-[18px] shadow-[0_20px_60px_rgba(15,23,42,0.12)] overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-[170px] md:h-[180px]">
+                        <img src="https://images.pexels.com/photos/1181534/pexels-photo-1181534.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Business & Economy" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="py-4 text-center">
+                        <p class="text-[13px] font-semibold text-slate-900">
+                        Business &amp; Economy
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="w-full sm:w-[260px] md:w-[280px] bg-white rounded-[18px] shadow-[0_20px_60px_rgba(15,23,42,0.12)] overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-[170px] md:h-[180px]">
+                        <img src="https://images.pexels.com/photos/845451/pexels-photo-845451.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Human Resource (HR)" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="py-4 text-center">
+                        <p class="text-[13px] font-semibold text-slate-900">
+                        Human Resource (HR)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="w-full sm:w-[260px] md:w-[280px] bg-white rounded-[18px] shadow-[0_20px_60px_rgba(15,23,42,0.12)] overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-[170px] md:h-[180px]">
+                        <img src="https://images.pexels.com/photos/1181562/pexels-photo-1181562.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Technology" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="py-4 text-center">
+                        <p class="text-[13px] font-semibold text-slate-900">
+                        Technology
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="w-full sm:w-[260px] md:w-[280px] bg-white rounded-[18px] shadow-[0_20px_60px_rgba(15,23,42,0.12)] overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-[170px] md:h-[180px]">
+                        <img src="https://images.pexels.com/photos/3828832/pexels-photo-3828832.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Health & Safety" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="py-4 text-center">
+                        <p class="text-[13px] font-semibold text-slate-900">
+                        Health &amp; Safety
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY CHOOSE US -->
+        <section class="mt-40">
+            <!-- Heading -->
+            <div class="max-w-6xl mx-auto text-center px-4 lg:px-0" data-aos="fade-up">
+                <h2 class="text-2xl md:text-3xl font-semibold text-slate-900"> Why <span class="text-[#C1DCDC]">Choose Us</span></h2>
+            </div>
+
+            <!-- Cards -->
+            <div class="max-w-6xl mx-auto mt-10 px-4 lg:px-0 grid gap-6 md:grid-cols-3">
+                <!-- Card 1 -->
+                <div class="bg-[#F5F7FB] rounded-[22px] px-6 py-7 shadow-[0_18px_40px_rgba(15,23,42,0.06)] text-sm" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-8 h-8 rounded-[10px] flex items-center justify-center mb-4">
+                          <img src="assets/choose1.png" alt="" class="w-8 h-8"/>
+                    </div>
+                    <p class="font-semibold text-slate-900 mb-3 leading-snug">
+                    Internationally Certified<br>Programs
+                    </p>
+                    <p class="text-[13px] text-slate-600 leading-relaxed">
+                    Earn globally recognized certifications that strengthen your
+                    professional profile and open wider career opportunities in
+                    various industries worldwide.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-[#F5F7FB] rounded-[22px] px-6 py-7 shadow-[0_18px_40px_rgba(15,23,42,0.06)] text-sm" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-8 h-8 rounded-[10px] flex items-center justify-center mb-4">
+                          <img src="assets/choose2.png" alt="" class="w-8 h-8"/>
+                    </div>
+                    <p class="font-semibold text-slate-900 mb-3 leading-snug">
+                    Expert Instructors &amp;<br>Industry Practitioners
+                    </p>
+                    <p class="text-[13px] text-slate-600 leading-relaxed">
+                    Learn directly from experienced professionals who combine
+                    academic excellence with real-world expertise to deliver
+                    impactful, practical learning experiences.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-[#F5F7FB] rounded-[22px] px-6 py-7 shadow-[0_18px_40px_rgba(15,23,42,0.06)] text-sm" data-aos="fade-up"data-aos-delay="200">
+                    <div class="w-8 h-8 rounded-[10px] flex items-center justify-center mb-4">
+                          <img src="assets/choose2.png" alt="" class="w-8 h-8"/>
+                    </div>
+                    <p class="font-semibold text-slate-900 mb-3 leading-snug">
+                    Government-Aligned<br>Standards
+                    </p>
+                    <p class="text-[13px] text-slate-600 leading-relaxed">
+                    All programs follow national and international competency
+                    frameworks to ensure compliance, credibility, and relevance
+                    for civil servants and professionals.
+                    </p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-[#F5F7FB] rounded-[22px] px-6 py-7 shadow-[0_18px_40px_rgba(15,23,42,0.06)]text-sm" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-8 h-8 rounded-[10px] flex items-center justify-center mb-4">
+                          <img src="assets/choose3.png" alt="" class="w-8 h-8"/>
+                    </div>
+                    <p class="font-semibold text-slate-900 mb-3 leading-snug">
+                    Technology-Based<br>Learning
+                    </p>
+                    <p class="text-[13px] text-slate-600 leading-relaxed">
+                    Experience digital-integrated training methods that enhance
+                    engagement, accessibility, and adaptability in the era of
+                    Industry 4.0 transformation.
+                    </p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="bg-[#F5F7FB] rounded-[22px] px-6 py-7 shadow-[0_18px_40px_rgba(15,23,42,0.06)] text-sm" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-8 h-8 rounded-[10px] flex items-center justify-center mb-4">
+                          <img src="assets/choose4.png" alt="" class="w-8 h-8"/>
+                    </div>
+                    <p class="font-semibold text-slate-900 mb-3 leading-snug">
+                    Comprehensive Consulting<br>Services
+                    </p>
+                    <p class="text-[13px] text-slate-600 leading-relaxed">
+                    Learn how to manage data using SQL, Machine Learning, &amp;
+                    Python for 4.5 months which will be guided directly by
+                    experienced data science practitioners.
+                    </p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="bg-[#F5F7FB] rounded-[22px] px-6 py-7 shadow-[0_18px_40px_rgba(15,23,42,0.06)] text-sm" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-8 h-8 rounded-[10px]flex items-center justify-center mb-4">
+                          <img src="assets/choose5.png" alt="" class="w-8 h-8"/>
+                    </div>
+                    <p class="font-semibold text-slate-900 mb-3 leading-snug">
+                    Commitment to Excellence<br>&amp; Integrity
+                    </p>
+                    <p class="text-[13px] text-slate-600 leading-relaxed">
+                    We uphold professionalism, transparency, and innovation in
+                    every program to build lasting trust and deliver measurable,
+                    high-quality outcomes.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUR SERVICES -->
+        <section class="mt-40">
+            <!-- Heading -->
+            <div class="max-w-6xl mx-auto text-center px-4 lg:px-0" data-aos="fade-up">
+                <h2 class="text-2xl md:text-3xl font-semibold text-slate-900">Our <span class="text-[#C1DCDC]">Services</span></h2>
+            </div>
+
+            <!-- Cards -->
+            <div class="max-w-5xl mx-auto mt-14 px-4 lg:px-0 grid gap-8 md:grid-cols-2">
+
+                <!-- Card 1 -->
+                <div class="bg-white rounded-[22px] px-8 py-7 shadow-[0_30px_80px_rgba(15,23,42,0.10)] flex items-start gap-5" data-aos="fade-right">
+                    <div class="w-12 h-12 rounded-2xl bg-[#C1DCDC] flex items-center justify-center shrink-0 mt-1">
+                        <span class="text-white text-xl">🎓</span>
+                    </div>
+                    <div>
+                        <p class="text-base md:text-lg font-semibold text-slate-900 leading-snug">
+                        Training &amp;<br>Certification
+                        </p>
+                        <p class="mt-3 text-[13px] md:text-sm text-slate-600 leading-relaxed">
+                        Enhance your competence through technology-based training with
+                        internationally recognized certifications.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-[22px] px-8 py-7 shadow-[0_30px_80px_rgba(15,23,42,0.10)] flex items-start gap-5" data-aos="fade-left">
+                    <div class="w-12 h-12 rounded-2xl bg-[#C1DCDC] flex items-center justify-center shrink-0 mt-1">
+                        <span class="text-white text-xl">🏢</span>
+                    </div>
+                    <div>
+                        <p class="text-base md:text-lg font-semibold text-slate-900 leading-snug">
+                        Organizational<br>Consulting
+                        </p>
+                        <p class="mt-3 text-[13px] md:text-sm text-slate-600 leading-relaxed">
+                        Get strategic solutions to improve performance and human resource
+                        management within your organization.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="mt-40 relative overflow-hidden">
+            <div class="max-w-6xl mx-auto px-4 lg:px-0">
+                <!-- Heading -->
+                <h2 class="text-2xl md:text-3xl font-semibold text-center text-slate-900" data-aos="fade-up"> Client <span class="text-[#C1DCDC]">Testimonials</span></h2>
+
+                <div class="mt-12 flex flex-col lg:flex-row lg:items-center lg:gap-16">
+                    <!-- LEFT SIDE TEXT -->
+                    <div class="lg:w-5/12 mb-10 lg:mb-0" data-aos="fade-right">
+                        <div class="text-5xl text-[#C1DCDC] leading-none mb-4">“</div>
+                        <p class="text-2xl md:text-3xl font-semibold leading-snug text-slate-900">
+                        what they say<br>
+                        about Govind<br>
+                        Abra Enterprise
+                        </p>
+                        <p class="mt-5 text-sm text-slate-500 max-w-xs">
+                        More than 3000 users have been helped by World Online Course.
+                        </p>
+                    </div>
+
+                    <!-- RIGHT SIDE CARD -->
+                    <div class="lg:w-7/12 relative" data-aos="fade-left">
+                        <div class="bg-[#F5F7FB] rounded-[26px] shadow-[0_24px_70px_rgba(15,23,42,0.10)] px-8 py-8 md:px-10 md:py-9">
+                            <!-- top row: label + dots -->
+                            <div class="flex items-start justify-between mb-6">
+                                <p class="text-[11px] font-semibold text-[#C1DCDC] uppercase tracking-[0.22em]">
+                                What they say
+                                </p>
+                                <div class="flex items-center space-x-1 text-slate-400">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                                    <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                                    <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                                </div>
+                            </div>
+
+                            <!-- quote text -->
+                            <p class="text-sm md:text-[15px] text-slate-800 leading-relaxed">
+                            “Studying at WOC is fun, the curriculum is complete,
+                            the instructors are competent, and the assignments
+                            given are also relevant to the current scope of work.”
+                            </p>
+
+                            <!-- bottom row: user + arrows -->
+                            <div class="mt-8 flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 rounded-full bg-slate-300 overflow-hidden"></div>
+                                    <div>
+                                        <p class="text-[13px] font-semibold text-slate-900">
+                                        Resky Fernanda
+                                        </p>
+                                        <p class="text-[11px] text-slate-500">
+                                        Product Designer at Tokopedia
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center space-x-3">
+                                    <button class="w-9 h-9 rounded-full border border-slate-300 flex items-center justify-center text-slate-500 hover:bg-white">‹</button>
+                                    <button class="w-9 h-9 rounded-full border border-slate-300 flex items-center justify-center text-slate-500 hover:bg-white">›</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DEKORASI DI ANTARA TESTIMONIAL & CONTACT (TIDAK TAMBAH TINGGI) -->
+        <div class="relative w-full h-0">
+            <img src="assets/Illustration.png" alt="Decoration" class="hidden lg:block w-60 absolute right-0 -bottom-[300px] pointer-events-none select-none"/>
+        </div>
+
+        <!-- CONTACT -->
+        <section class="mt-40 relative overflow-hidden">
+            <div class="max-w-6xl mx-auto px-4 lg:px-0">
+                <!-- Heading -->
+                <h2 class="text-2xl md:text-[26px] font-semibold text-center text-slate-900" data-aos="fade-up"> Contact <span class="text-[#C1DCDC]">Us</span></h2>
+
+                <!-- Form + Map -->
+                <div class="mt-10 grid gap-10 lg:grid-cols-2 lg:items-center">
+                    <!-- LEFT: FORM -->
+                    <form class="space-y-5" data-aos="fade-right">
+                        <div>
+                            <label class="block mb-1 text-[11px] text-slate-600">Name</label>
+                            <input type="text" placeholder="Name" class="w-full rounded-[10px] border border-slate-300 px-4 py-2.5 text-[13px] text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#C1DCDC]/70 focus:border-[#8EB6B6] transition"/>
+                        </div>
+
+                        <div>
+                            <label class="block mb-1 text-[11px] text-slate-600">Email*</label>
+                            <input type="email" placeholder="Email" class="w-full rounded-[10px] border border-slate-300 px-4 py-2.5 text-[13px] text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#C1DCDC]/70 focus:border-[#8EB6B6] transition"/>
+                        </div>
+
+                        <div>
+                            <label class="block mb-1 text-[11px] text-slate-600">Message*</label>
+                            <textarea rows="5" placeholder="Message" class="w-full rounded-[10px] border border-slate-300 px-4 py-2.5 text-[13px] text-slate-900 resize-none focus:outline-none focus:ring-2 focus:ring-[#C1DCDC]/70 focus:border-[#8EB6B6] transition"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full rounded-[10px] bg-[#C1DCDC] py-3 text-[13px] font-semibold text-white shadow-[0_18px_40px_rgba(193,220,220,0.7)] hover:bg-[#A9D0D0] transition">
+                            Send Message
+                        </button>
+                    </form>
+
+                    <!-- RIGHT: LEAFLET MAP -->
+                    <div class="w-full h-[320px] rounded-[12px] overflow-hidden border border-slate-200 shadow-[0_14px_40px_rgba(15,23,42,0.06)] lg:self-center" data-aos="fade-left">
+                        <div id="leafletMap" class="w-full h-full"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA BANNER -->
+        <section class="mt-40">
+            <div class="relative bg-[#C1DCDC] py-32 overflow-hidden" data-aos="zoom-in">
+                <!-- PATTERN / MASK GROUP BACKGROUND -->
+                <img src="assets/Mask group.png" alt="Pattern" class="pointer-events-none select-none absolute bottom-[-260px] left-1/2 -translate-x-1/2 w-[900px] sm:w-[1200px] md:w-[1600px] max-w-none"/>
+
+                <!-- KONTEN DI DEPAN PATTERN -->
+                <div class="relative z-10 max-w-5xl mx-auto px-4 text-center flex flex-col items-center">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold text-white leading-snug">
+                    Join 3000+ participants worldwide<br />
+                    and achieve your dream!
+                    </h2>
+
+                    <button class="mt-8 px-10 py-3 text-sm font-semibold rounded-md bg-white text-[#C1DCDC] shadow-[0_18px_40px_rgba(193,220,220,0.7)] hover:bg-white hover:text-[#A0C8C8] transition">
+                    Join us now!
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="bg-[#181818] text-slate-300 mt-0" data-aos="fade-up" data-aos-offset="50">
+            <div class="max-w-7xl mx-auto px-6 py-14">
+
+                <div class="flex flex-col md:flex-row justify-between gap-12 items-start">
+                    <!-- KIRI: LOGO + BRAND + DESKRIPSI + SOSMED -->
+                    <div class="w-full md:w-[38%]">
+                        <!-- LOGO + GOVIND -->
+                        <div class="flex items-center gap-3 mb-5">
+                            <img src="assets/Logo.png" alt="Logo" class="w-[80px] h-auto object-contain" />
+                            <div>
+                                <p class="text-[18px] font-semibold text-[#8B5A2B] leading-tight">Govind</p>
+                                <p class="tracking-[0.2em] text-[11px] text-white uppercase">
+                                ABRA ENTERPRISE
+                                </p>
+                            </div>
+                        </div>
+
+                            <!-- DESKRIPSI -->
+                            <p class="text-[12px] text-slate-200 leading-relaxed mb-6">
+                            Govind Abra Enterprise is a professional training and certification institution
+                            committed to developing globally competitive human resources.
+                            </p>
+
+                            <!-- SOSIAL MEDIA -->
+                            <div class="flex items-center space-x-4 text-white text-[16px]">
+                            <span class="hover:text-[#D4AC37] cursor-pointer"></span>
+                            <span class="hover:text-[#D4AC37] cursor-pointer"></span>
+                            <span class="hover:text-[#D4AC37] cursor-pointer"></span>
+                            <span class="hover:text-[#D4AC37] cursor-pointer"></span>
+                            <span class="hover:text-[#D4AC37] cursor-pointer"></span>
+                        </div>
+                    </div>
+
+                    <!-- KANAN: HOME / ABOUT / CONTACT -->
+                    <div class="w-full md:w-[55%] flex flex-col md:flex-row justify-between items-start md:mt-2">
+
+                        <!-- HOME -->
+                        <div class="mb-8 md:mb-0">
+                            <h4 class="text-[13px] font-semibold mb-3 text-white">Home</h4>
+                            <ul class="space-y-2 text-[12px] text-slate-200">
+                                <li><a href="#" class="hover:text-white transition">Beranda</a></li>
+                                <li><a href="#" class="hover:text-white transition">Programs</a></li>
+                                <li><a href="#" class="hover:text-white transition">Why Choose Us</a></li>
+                                <li><a href="#" class="hover:text-white transition">Testimonials</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- ABOUT -->
+                        <div class="mb-8 md:mb-0">
+                            <h4 class="text-[13px] font-semibold mb-3 text-white">About</h4>
+                            <ul class="space-y-2 text-[12px] text-slate-200">
+                                <li><a href="#" class="hover:text-white transition">Company</a></li>
+                                <li><a href="#" class="hover:text-white transition">Certification</a></li>
+                                <li><a href="#" class="hover:text-white transition">Gallery</a></li>
+                                <li><a href="#" class="hover:text-white transition">Our News</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- CONTACT -->
+                        <div>
+                            <h4 class="text-[13px] font-semibold mb-3 text-white">Contact</h4>
+                            <ul class="space-y-3 text-[12px] text-slate-200">
+                                <li class="flex items-start space-x-3">
+                                    <span class="text-[#D4AC37] text-[13px]"></span>
+                                    <span>(406) 555-0120</span>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <span class="text-[#D4AC37] text-[13px]"></span>
+                                    <span>kreasi.digital@gmail.com</span>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <span class="text-[#D4AC37] text-[13px]"></span>
+                                    <span>
+                                    2972 Westheimer Rd. Santa<br/>
+                                    Ana, Illinois 85486
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOTTOM BAR -->
+            <div class="border-t border-[#222222]">
+                <div class="max-w-7xl mx-auto px-6 py-4 text-[10px] text-slate-500 flex justify-between">
+                    <p>© 2025 Solveit. All rights reserved.</p>
+                    <p>Design by ©Solveit.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- SCRIPTS -->
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+        <!-- AOS JS -->
+        <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+            AOS.init({
+            duration: 800,
+            offset: 120,
+            once: true,
+
+            disable: function () {
+            // gunakan breakpoint Tailwind: md = 768px
+            return window.innerWidth < 768;   // kalau <768px (mobile) => mati
+            }
+            });
+            });
+        </script>
+
+
+        <!-- Custom JS -->
+        <script src="Js/index.js"></script>
+    </body>
+</html>
