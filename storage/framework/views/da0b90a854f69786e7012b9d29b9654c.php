@@ -5,7 +5,7 @@
         <title>International Certification & Professional Training Institution in Indonesia | Govind Abra Enterprise</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        {{-- PRIMARY SEO (EN + ID) --}}
+        
         <meta name="description"
             content="Govind Abra Enterprise adalah lembaga pendidikan dan pelatihan profesional di Indonesia yang berfokus pada program sertifikasi internasional untuk individu, profesional, dan organisasi, selaras dengan standar global dan regulasi pemerintah ASN. Govind Abra Enterprise is a professional education and training institution dedicated to developing world-class human resources through globally recognized International Certification Programs.">
         <meta name="keywords"
@@ -17,43 +17,43 @@
         <meta name="geo.placename" content="Malang, Indonesia">
         <meta name="theme-color" content="#C1DCDC">
 
-        {{-- CANONICAL & HREFLANG --}}
-        <link rel="canonical" href="{{ url('/') }}">
-        <link rel="alternate" href="{{ url('/') }}" hreflang="x-default">
-        <link rel="alternate" href="{{ url('/') }}" hreflang="en">
-        <link rel="alternate" href="{{ url('/') }}" hreflang="id">
+        
+        <link rel="canonical" href="<?php echo e(url('/')); ?>">
+        <link rel="alternate" href="<?php echo e(url('/')); ?>" hreflang="x-default">
+        <link rel="alternate" href="<?php echo e(url('/')); ?>" hreflang="en">
+        <link rel="alternate" href="<?php echo e(url('/')); ?>" hreflang="id">
 
-        {{-- OPEN GRAPH (FB, LINKEDIN, WHATSAPP) --}}
+        
         <meta property="og:type" content="website">
         <meta property="og:title"
             content="International Certification & Professional Training Institution in Indonesia | Govind Abra Enterprise">
         <meta property="og:description"
             content="Govind Abra Enterprise membantu individu, profesional, dan organisasi di Indonesia meningkatkan kompetensi melalui program sertifikasi internasional, pelatihan berbasis teknologi, dan consulting terpadu yang selaras dengan standar global dan regulasi pemerintah.">
-        <meta property="og:url" content="{{ url('/') }}">
+        <meta property="og:url" content="<?php echo e(url('/')); ?>">
         <meta property="og:site_name" content="Govind Abra Enterprise">
-        <meta property="og:image" content="{{ asset('img/og-govind.jpg') }}">
+        <meta property="og:image" content="<?php echo e(asset('img/og-govind.jpg')); ?>">
         <meta property="og:locale" content="en_US">
         <meta property="og:locale:alternate" content="id_ID">
 
-        {{-- TWITTER CARD --}}
+        
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title"
             content="Govind Abra Enterprise – International Certification & Professional Training Institution in Indonesia">
         <meta name="twitter:description"
             content="International certification programs, ASN-aligned development, competency-based training, and integrated consulting solutions from Indonesia to the world.">
-        <meta name="twitter:image" content="{{ asset('img/og-govind.jpg') }}">
+        <meta name="twitter:image" content="<?php echo e(asset('img/og-govind.jpg')); ?>">
 
-       {{-- STRUCTURED DATA (SCHEMA.ORG JSON-LD) --}}
+       
         <script type="application/ld+json">
             {
-                "@@context": "https://schema.org",
-                "@@type": "Organization",
+                "@context": "https://schema.org",
+                "@type": "Organization",
                 "name": "Govind Abra Enterprise",
-                "url": "{{ url('/') }}",
-                "logo": "{{ asset('img/Logo.png') }}",
+                "url": "<?php echo e(url('/')); ?>",
+                "logo": "<?php echo e(asset('img/Logo.png')); ?>",
                 "description": "Govind Abra Enterprise is a professional education and training institution dedicated to developing world-class human resources through globally recognized International Certification Programs.",
                 "address": {
-                    "@@type": "PostalAddress",
+                    "@type": "PostalAddress",
                     "streetAddress": "Perum Bumi Rajasa A3, Bumiayu, Kedungkandang",
                     "addressLocality": "Malang",
                     "addressRegion": "Jawa Timur",
@@ -61,7 +61,7 @@
                     "addressCountry": "ID"
                 },
                 "contactPoint": [{
-                    "@@type": "ContactPoint",
+                    "@type": "ContactPoint",
                     "telephone": "+62-822-4597-5553",
                     "contactType": "customer service",
                     "areaServed": "ID",
@@ -75,13 +75,13 @@
             
             <script type="application/ld+json">
             {
-                "@@context": "https://schema.org",
-                "@@type": "WebSite",
+                "@context": "https://schema.org",
+                "@type": "WebSite",
                 "name": "Govind Abra Enterprise",
-                "url": "{{ url('/') }}",
+                "url": "<?php echo e(url('/')); ?>",
                 "potentialAction": {
-                    "@@type": "SearchAction",
-                    "target": "{{ url('/') }}?q={search_term_string}",
+                    "@type": "SearchAction",
+                    "target": "<?php echo e(url('/')); ?>?q={search_term_string}",
                     "query-input": "required name=search_term_string"
                 }
             }
@@ -114,7 +114,7 @@
 
                     <!-- LEFT: Logo + Brand -->
                     <div class="flex items-center gap-3 flex-shrink-0">
-                        <img src="{{ asset('img/Logo.png') }}" alt="Govind Logo" class="h-10 w-auto object-contain"/>
+                        <img src="<?php echo e(asset('img/Logo.png')); ?>" alt="Govind Logo" class="h-10 w-auto object-contain"/>
                         <span class="text-base font-semibold text-[#8B5A2B]">
                             Govind
                         </span>
@@ -132,45 +132,47 @@
 
                     <!-- RIGHT AUTH -->
                     <div class="hidden lg:flex items-center gap-3 text-[13px] ml-6 flex-shrink-0">
-                        {{-- Guest: Sign In + Sign Up --}}
-                        @guest
-                            <a href="{{ route('login') }}" class="px-4 py-1.5 border border-slate-300 rounded-md hover:bg-slate-50 transition">
+                        
+                        <?php if(auth()->guard()->guest()): ?>
+                            <a href="<?php echo e(route('login')); ?>" class="px-4 py-1.5 border border-slate-300 rounded-md hover:bg-slate-50 transition">
                                 Sign In
                             </a>
-                            <a href="{{ route('register') }}" class="px-4 py-1.5 rounded-md bg-slate-900 text-white hover:bg-black transition">
+                            <a href="<?php echo e(route('register')); ?>" class="px-4 py-1.5 rounded-md bg-slate-900 text-white hover:bg-black transition">
                                 Sign Up
                             </a>
-                        @endguest
+                        <?php endif; ?>
 
-                        {{-- Authenticated: dropdown avatar for role=user --}}
-                        @auth
-                            @php
+                        
+                        <?php if(auth()->guard()->check()): ?>
+                            <?php
                                 $u = auth()->user();
                                 $avatar = $u->img
                                     ? asset('storage/users/' . $u->img)
                                     : null;
                                 $initial = \Illuminate\Support\Str::upper(substr($u->name, 0, 1));
-                            @endphp
+                            ?>
 
-                            @if($u->role === 'user')
+                            <?php if($u->role === 'user'): ?>
                             <details id="desktopProfile" class="relative">
                                 <summary
                                     class="flex items-center gap-2 cursor-pointer select-none list-none rounded-md px-2 py-1.5 hover:bg-slate-100 focus:outline-none"
                                 >
-                                    {{-- PROFILE PHOTO --}}
-                                    @if($avatar)
-                                        <img src="{{ $avatar }}"
+                                    
+                                    <?php if($avatar): ?>
+                                        <img src="<?php echo e($avatar); ?>"
                                             class="h-9 w-9 rounded-full object-cover border border-slate-300 shadow-sm"
                                             alt="Avatar">
-                                    @else
-                                        {{-- INITIALS FALLBACK --}}
+                                    <?php else: ?>
+                                        
                                         <div class="h-9 w-9 rounded-full bg-[#C1DCDC] text-slate-900 grid place-items-center font-semibold shadow">
-                                            {{ $initial }}
+                                            <?php echo e($initial); ?>
+
                                         </div>
-                                    @endif
+                                    <?php endif; ?>
 
                                     <span class="text-sm font-medium text-slate-700 max-w-[12rem] truncate">
-                                        {{ $u->name }}
+                                        <?php echo e($u->name); ?>
+
                                     </span>
 
                                     <svg class="h-4 w-4 text-slate-500" viewBox="0 0 20 20" fill="currentColor">
@@ -183,14 +185,14 @@
                                 <!-- DROPDOWN -->
                                 <ul class="absolute right-0 mt-2 w-64 rounded-xl border border-slate-200 bg-white shadow-lg z-50 overflow-hidden">
                                     <li class="px-4 py-3">
-                                        <div class="text-sm font-semibold text-slate-800 truncate">{{ $u->name }}</div>
-                                        <div class="text-xs text-slate-500 truncate">{{ $u->email }}</div>
+                                        <div class="text-sm font-semibold text-slate-800 truncate"><?php echo e($u->name); ?></div>
+                                        <div class="text-xs text-slate-500 truncate"><?php echo e($u->email); ?></div>
                                     </li>
                                     <li><hr class="border-slate-200"></li>
 
                                     <li>
-                                        <form method="POST" action="{{ route('logout') }}">
-                                            @csrf
+                                        <form method="POST" action="<?php echo e(route('logout')); ?>">
+                                            <?php echo csrf_field(); ?>
                                             <button type="submit"
                                                     class="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50">
                                                 Logout
@@ -199,12 +201,12 @@
                                     </li>
                                 </ul>
                             </details>
-                            @else
-                                <a href="{{ route('admin.home') }}" class="px-4 py-1.5 rounded-md bg-slate-900 text-white hover:bg-black transition">
+                            <?php else: ?>
+                                <a href="<?php echo e(route('admin.home')); ?>" class="px-4 py-1.5 rounded-md bg-slate-900 text-white hover:bg-black transition">
                                     Admin Panel
                                 </a>
-                            @endif
-                        @endauth
+                            <?php endif; ?>
+                        <?php endif; ?>
                     </div>
 
                     <!-- HAMBURGER MOBILE -->
@@ -228,52 +230,55 @@
                     </nav>
 
                     <div class="flex items-center gap-3 mt-4 text-[13px]">
-                        {{-- GUEST: Sign In + Sign Up --}}
-                        @guest
-                            <a href="{{ route('login') }}"
+                        
+                        <?php if(auth()->guard()->guest()): ?>
+                            <a href="<?php echo e(route('login')); ?>"
                             class="flex-1 px-4 py-1.5 border border-slate-300 rounded-md hover:bg-slate-50 transition">
                                 Sign In
                             </a>
-                            <a href="{{ route('register') }}"
+                            <a href="<?php echo e(route('register')); ?>"
                             class="flex-1 px-4 py-1.5 rounded-md bg-slate-900 text-white hover:bg-black transition">
                                 Sign Up
                             </a>
-                        @endguest
+                        <?php endif; ?>
 
-                        {{-- AUTH: inline profile dropdown for user --}}
-                        @auth
-                            @if(auth()->user()->role === 'user')
-                                @php
+                        
+                        <?php if(auth()->guard()->check()): ?>
+                            <?php if(auth()->user()->role === 'user'): ?>
+                                <?php
                                     $u = auth()->user();
                                     $avatar = $u->img
                                         ? asset('storage/users/' . $u->img)
                                         : null;
                                     $initial = \Illuminate\Support\Str::upper(substr($u->name, 0, 1));
-                                @endphp
+                                ?>
 
                                 <details id="mobileInlineProfile" class="w-full relative">
                                     <summary
                                         class="flex items-center gap-3 cursor-pointer select-none rounded-md px-3 py-2.5 border border-slate-300 hover:bg-slate-50"
                                     >
 
-                                        {{-- PROFILE PHOTO --}}
-                                        @if($avatar)
-                                            <img src="{{ $avatar }}"
+                                        
+                                        <?php if($avatar): ?>
+                                            <img src="<?php echo e($avatar); ?>"
                                                 class="h-9 w-9 rounded-full object-cover border border-slate-300 shadow-sm"
                                                 alt="Avatar">
-                                        @else
-                                            {{-- INITIALS FALLBACK --}}
+                                        <?php else: ?>
+                                            
                                             <div class="h-9 w-9 rounded-full bg-[#C1DCDC] text-slate-900 grid place-items-center font-semibold shadow">
-                                                {{ $initial }}
+                                                <?php echo e($initial); ?>
+
                                             </div>
-                                        @endif
+                                        <?php endif; ?>
 
                                         <div class="flex-1 min-w-0 text-left">
                                             <div class="text-sm font-semibold text-slate-800 truncate">
-                                                {{ $u->name }}
+                                                <?php echo e($u->name); ?>
+
                                             </div>
                                             <div class="text-xs text-slate-500 truncate">
-                                                {{ $u->email }}
+                                                <?php echo e($u->email); ?>
+
                                             </div>
                                         </div>
 
@@ -285,8 +290,8 @@
                                     </summary>
 
                                     <div class="mt-2 w-full rounded-md border border-slate-200 bg-white shadow-lg overflow-hidden">
-                                        <form method="POST" action="{{ route('logout') }}">
-                                            @csrf
+                                        <form method="POST" action="<?php echo e(route('logout')); ?>">
+                                            <?php echo csrf_field(); ?>
                                             <button type="submit"
                                                     class="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50">
                                                 Logout
@@ -294,23 +299,24 @@
                                         </form>
                                     </div>
                                 </details>
-                            @endif
-                        @endauth
+                            <?php endif; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
 
             </div>
-            @if(session('success'))
+            <?php if(session('success')): ?>
             <div
                 id="success-alert"
                 class="fixed top-4 left-1/2 transform -translate-x-1/2
                     bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg
                     opacity-100 transition-all duration-700 z-50"
             >
-                {{ session('success') }}
+                <?php echo e(session('success')); ?>
+
             </div>
             <div class="hidden opacity-0 translate-y-5"></div>
-            @endif
+            <?php endif; ?>
         </header>
 
         <!-- HERO -->
@@ -357,13 +363,13 @@
                     <!-- RIGHT ILLUSTRATION -->
                     <div class="relative w-full lg:w-1/2 h-full pr-14 py-6 flex justify-end" data-aos="fade-up">
                         <!-- LOGO HERO → visible from lg (>=1024px) -->
-                        <img src="{{ asset('img/hero1.png') }}" alt="Govind Abra Logo" class="hidden lg:block absolute bottom-6 right-10 w-[330px] lg:w-[360px] drop-shadow-[0_30px_70px_rgba(0,0,0,0.45)] translate-y-[483px] mr-5"/>
+                        <img src="<?php echo e(asset('img/hero1.png')); ?>" alt="Govind Abra Logo" class="hidden lg:block absolute bottom-6 right-10 w-[330px] lg:w-[360px] drop-shadow-[0_30px_70px_rgba(0,0,0,0.45)] translate-y-[483px] mr-5"/>
 
                         <!-- HERO 2 -->
-                        <img src="{{ asset('img/hero2.png') }}" alt="" class="hidden lg:block absolute top-[20px] right-[20px] w-[80px]"/>
+                        <img src="<?php echo e(asset('img/hero2.png')); ?>" alt="" class="hidden lg:block absolute top-[20px] right-[20px] w-[80px]"/>
 
                         <!-- HERO 3 -->
-                        <img src="{{ asset('img/hero3.png') }}" alt="" class="hidden lg:block absolute top-[300px] right-[450px] w-[170px]"/>
+                        <img src="<?php echo e(asset('img/hero3.png')); ?>" alt="" class="hidden lg:block absolute top-[300px] right-[450px] w-[170px]"/>
                     </div>
 
                 </div>
@@ -496,7 +502,7 @@
                                     <a href="#" class="inline-flex items-center justify-center rounded-xl border border-[#6AAEAD] px-4 py-2 text-xs font-medium text-[#6AAEAD] hover:bg-[#6AAEAD] hover:text-white transition-colors">
                                         View Details
                                     </a>
-                                    <a href="{{ route('registerProgram',"Program 01 : Communication & Services") }}" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
+                                    <a href="<?php echo e(route('registerProgram',"Program 01 : Communication & Services")); ?>" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
                                         Register
                                     </a>
                                 </div>
@@ -545,7 +551,7 @@
                                     <a href="#" class="inline-flex items-center justify-center rounded-xl border border-[#6AAEAD] px-4 py-2 text-xs font-medium text-[#6AAEAD] hover:bg-[#6AAEAD] hover:text-white transition-colors">
                                         View Details
                                     </a>
-                                    <a href="{{ route('registerProgram',"Program 02 : Business & Economy") }}" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
+                                    <a href="<?php echo e(route('registerProgram',"Program 02 : Business & Economy")); ?>" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
                                         Register
                                     </a>
                                 </div>
@@ -593,7 +599,7 @@
                                     <a href="#" class="inline-flex items-center justify-center rounded-xl border border-[#6AAEAD] px-4 py-2 text-xs font-medium text-[#6AAEAD] hover:bg-[#6AAEAD] hover:text-white transition-colors">
                                         View Details
                                     </a>
-                                    <a href="{{ route('registerProgram',"Program 03 : Human Resource (HR)") }}" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
+                                    <a href="<?php echo e(route('registerProgram',"Program 03 : Human Resource (HR)")); ?>" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
                                         Register
                                     </a>
                                 </div>
@@ -641,7 +647,7 @@
                                     <a href="#" class="inline-flex items-center justify-center rounded-xl border border-[#6AAEAD] px-4 py-2 text-xs font-medium text-[#6AAEAD] hover:bg-[#6AAEAD] hover:text-white transition-colors">
                                         View Details
                                     </a>
-                                    <a href="{{ route('registerProgram',"Program 04 : Technology") }}" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
+                                    <a href="<?php echo e(route('registerProgram',"Program 04 : Technology")); ?>" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
                                         Register
                                     </a>
                                 </div>
@@ -689,7 +695,7 @@
                                     <a href="#" class="inline-flex items-center justify-center rounded-xl border border-[#6AAEAD] px-4 py-2 text-xs font-medium text-[#6AAEAD] hover:bg-[#6AAEAD] hover:text-white transition-colors">
                                         View Details
                                     </a>
-                                    <a href="{{ route('registerProgram',"Program 05 : Health & Safety") }}" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
+                                    <a href="<?php echo e(route('registerProgram',"Program 05 : Health & Safety")); ?>" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
                                         Register
                                     </a>
                                 </div>
@@ -758,7 +764,7 @@
                     onmouseleave="this.style.transform='scale(1) translateY(0)';">
 
                     <div class="w-10 h-10 flex items-center justify-center mb-4">
-                        <img src="{{ asset('img/choose1.png') }}"
+                        <img src="<?php echo e(asset('img/choose1.png')); ?>"
                             class="w-8 h-8"
                             style="filter: brightness(0) saturate(100%)
                                     invert(44%) sepia(12%)
@@ -792,7 +798,7 @@
                     onmouseleave="this.style.transform='scale(1) translateY(0)';">
 
                     <div class="w-10 h-10 flex items-center justify-center mb-4">
-                        <img src="{{ asset('img/choose2.png') }}"
+                        <img src="<?php echo e(asset('img/choose2.png')); ?>"
                             class="w-8 h-8"
                             style="
                                 filter: brightness(0) saturate(100%)
@@ -828,7 +834,7 @@
                     onmouseleave="this.style.transform='scale(1) translateY(0)';">
 
                     <div class="w-10 h-10 flex items-center justify-center mb-4">
-                        <img src="{{ asset('img/choose3.png') }}"
+                        <img src="<?php echo e(asset('img/choose3.png')); ?>"
                             class="w-8 h-8"
                             style="
                                 filter: brightness(0) saturate(100%)
@@ -863,7 +869,7 @@
                     onmouseleave="this.style.transform='scale(1) translateY(0)';">
 
                     <div class="w-10 h-10 flex items-center justify-center mb-4">
-                        <img src="{{ asset('img/choose4.png') }}"
+                        <img src="<?php echo e(asset('img/choose4.png')); ?>"
                             class="w-8 h-8"
                             style="
                                 filter: brightness(0) saturate(100%)
@@ -898,7 +904,7 @@
                     onmouseleave="this.style.transform='scale(1) translateY(0)';">
 
                     <div class="w-10 h-10 flex items-center justify-center mb-4">
-                        <img src="{{ asset('img/choose3.png') }}"
+                        <img src="<?php echo e(asset('img/choose3.png')); ?>"
                             class="w-8 h-8"
                             style="
                                 filter: brightness(0) saturate(100%)
@@ -934,7 +940,7 @@
                     onmouseleave="this.style.transform='scale(1) translateY(0)';">
 
                     <div class="w-10 h-10 flex items-center justify-center mb-4">
-                        <img src="{{ asset('img/choose5.png') }}"
+                        <img src="<?php echo e(asset('img/choose5.png')); ?>"
                             class="w-8 h-8"
                             style="
                                 filter: brightness(0) saturate(100%)
@@ -1082,34 +1088,37 @@
 
                             <!-- quote text -->
                             <p id="testimonial-text" class="text-sm md:text-[15px] text-slate-800 leading-relaxed">
-                                “{{ $testimonials->first()['text'] }}”
+                                “<?php echo e($testimonials->first()['text']); ?>”
                             </p>
 
                             <!-- bottom row: user + arrows -->
                             <div class="mt-8 flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
                                     <div id="testimonial-photo" class="w-100">
-                                        @if($testimonials->first()->img)
-                                        <img src="{{ $testimonials->first()->img }}"
+                                        <?php if($testimonials->first()->img): ?>
+                                        <img src="<?php echo e($testimonials->first()->img); ?>"
                                             class="h-9 w-9 rounded-full object-cover border border-slate-300 shadow-sm"
                                             alt="Avatar">
-                                        @else
-                                            {{-- INITIALS FALLBACK --}}
+                                        <?php else: ?>
+                                            
                                             <div class="h-9 w-9 rounded-full bg-[#C1DCDC] text-slate-900 grid place-items-center font-semibold shadow">
-                                                {{ \Illuminate\Support\Str::upper(substr($testimonials->first()->name, 0, 1)) }}
+                                                <?php echo e(\Illuminate\Support\Str::upper(substr($testimonials->first()->name, 0, 1))); ?>
+
                                             </div>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                     <div>
                                         <p id="testimonial-name" class="text-[13px] font-semibold text-slate-900">
-                                            {{ $testimonials->first()['name'] }}
+                                            <?php echo e($testimonials->first()['name']); ?>
+
                                         </p>
                                         <div class="flex flex-row gap-2">
                                             <p id="testimonial-role" class="text-[11px] text-slate-500">
-                                                {{ $testimonials->first()['occupation'] }}
+                                                <?php echo e($testimonials->first()['occupation']); ?>
+
                                             </p>
                                             <p class="text-[11px] text-slate-500">|</p>
-                                            <span class="text-[11px] text-slate-500 inline" id="testimonial-date">{{ $testimonials->first()['created_at']->translatedFormat('d F Y') }}</span>
+                                            <span class="text-[11px] text-slate-500 inline" id="testimonial-date"><?php echo e($testimonials->first()['created_at']->translatedFormat('d F Y')); ?></span>
                                         </div>
                                          
                                     </div>
@@ -1135,7 +1144,7 @@
                 <div class="mt-5 lg:mt-8 flex flex-col justify-center items-center gap-2 lg:justify-between lg:flex-row">
                     <div class="flex flex-col text-center lg:flex-row lg:items-center lg:text-start lg:gap-5">
                         <div class="hidden lg:block" data-aos="fade-right">
-                            <img src="{{ asset('img/pencil-simple-line.png') }}"
+                            <img src="<?php echo e(asset('img/pencil-simple-line.png')); ?>"
                                 class="w-7 h-7"
                                 style="
                                     filter: brightness(0) saturate(100%)
@@ -1148,7 +1157,7 @@
                             If you’d like to share your experience, tap the button to leave us a testimonial!
                         </p>
                     </div>
-                    <a  href="{{ route('testimonial') }}"
+                    <a  href="<?php echo e(route('testimonial')); ?>"
                         data-aos="fade-left"
                         class="w-30 lg:w-50 rounded-[5px] border border-[#6AAEAD] px-2 py-1 lg:px-4 lg:py-2 text-xs lg:text-sm font-medium text-[#6AAEAD] hover:bg-[#6AAEAD] hover:text-white transition-colors">
                         Give Testimonial
@@ -1159,7 +1168,7 @@
 
         <!-- DECORATION BETWEEN TESTIMONIAL & CONTACT (NO EXTRA HEIGHT) -->
         <div class="relative w-full h-0">
-            <img src="{{ asset('img/Illustration.png') }}" alt="Decoration" class="hidden lg:block w-60 absolute right-0 -bottom-[300px] pointer-events-none select-none"/>
+            <img src="<?php echo e(asset('img/Illustration.png')); ?>" alt="Decoration" class="hidden lg:block w-60 absolute right-0 -bottom-[300px] pointer-events-none select-none"/>
         </div>
 
         <!-- CONTACT -->
@@ -1180,7 +1189,7 @@
                 <div class="mt-10 grid gap-10 lg:grid-cols-2 lg:items-center">
 
                     <!-- LEFT: FORM -->
-                    <form class="space-y-5" data-aos="fade-right" method="get" action="{{ route('submit-contact') }}">
+                    <form class="space-y-5" data-aos="fade-right" method="get" action="<?php echo e(route('submit-contact')); ?>">
 
                         <!-- Name -->
                         <div>
@@ -1244,7 +1253,7 @@
                 data-aos="zoom-in">
 
                 <!-- PATTERN / MASK -->
-                <img src="{{ asset('img/Mask group.png') }}"
+                <img src="<?php echo e(asset('img/Mask group.png')); ?>"
                     alt="Pattern"
                     class="pointer-events-none select-none absolute bottom-[-260px] left-1/2
                             -translate-x-1/2 w-[900px] sm:w-[1200px] md:w-[1600px]
@@ -1278,7 +1287,7 @@
                     <div class="w-full md:w-[38%]">
                         <!-- LOGO + GOVIND -->
                         <div class="flex items-center gap-3 mb-5">
-                            <img src="{{ asset('img/Logo.png') }}" alt="Logo" class="w-[80px] h-auto object-contain" />
+                            <img src="<?php echo e(asset('img/Logo.png')); ?>" alt="Logo" class="w-[80px] h-auto object-contain" />
                             <div>
                                 <p class="text-[18px] font-semibold text-[#8B5A2B] leading-tight">Govind</p>
                                 <p class="tracking-[0.2em] text-[11px] text-white uppercase">
@@ -1385,7 +1394,7 @@
         </script>
 
         <!-- Custom JS -->
-        <script src="{{ asset('js/script.js') }}"></script>
+        <script src="<?php echo e(asset('js/script.js')); ?>"></script>
 
         <!-- Video About Us -->
         <script>
@@ -1415,7 +1424,7 @@
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 // Testimonials data
-                const testimonials = @json($testimonialsJs);
+                const testimonials = <?php echo json_encode($testimonialsJs, 15, 512) ?>;
 
                 let currentIndex = 0;
 
@@ -1619,4 +1628,4 @@
 
     </body>
 
-</html>
+</html><?php /**PATH C:\xampp\htdocs\govind\resources\views/user/home.blade.php ENDPATH**/ ?>

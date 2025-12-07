@@ -4,9 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 
-Route::get('/', function () {
-    return view('user.home');
-});
+Route::get('/', [UserController::class, 'userHome']);
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     // HOME ROUTES
@@ -34,6 +32,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 Route::middleware(['auth', 'role:user'])->group(function () {
     // HOME ROUTES
     Route::get('/home', [UserController::class, 'userHome'])->name('home');
+    Route::get('/registerProgram/{programName}', [UserController::class, 'userRegisterProgram'])->name('registerProgram');
+    Route::get('/testimonial', [UserController::class, 'userTestimonial'])->name('testimonial');
+    Route::post('/submit-testimonial', [UserController::class, 'userSubmitTestimonial'])->name('submit-testimonial');
+    Route::get('/submit-contact', [UserController::class, 'userSubmitContact'])->name('submit-contact');
 });
 
 require __DIR__.'/auth.php';
