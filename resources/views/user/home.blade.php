@@ -122,12 +122,12 @@
 
                     <!-- CENTER NAV -->
                     <nav class="hidden lg:flex items-center justify-center flex-grow gap-10 text-[14px] text-slate-800">
-                        <a href="#" class="hover:text-[#6AAEAD] transition">Home</a>
-                        <a href="#" class="hover:text-[#6AAEAD] transition">About</a>
-                        <a href="#" class="hover:text-[#6AAEAD] transition">Certifications</a>
-                        <a href="#" class="hover:text-[#6AAEAD] transition">Benefits</a>
-                        <a href="#" class="hover:text-[#6AAEAD] transition">Services</a>
-                        <a href="#" class="hover:text-[#6AAEAD] transition">Contact</a>
+                        <a href="#hero-section" class="hover:text-[#6AAEAD] transition">Home</a>
+                        <a href="#about-section" class="hover:text-[#6AAEAD] transition">About</a>
+                        <a href="#program-section" class="hover:text-[#6AAEAD] transition">Certifications</a>
+                        <a href="#benefit-section" class="hover:text-[#6AAEAD] transition">Benefits</a>
+                        <a href="#service-section" class="hover:text-[#6AAEAD] transition">Services</a>
+                        <a href="#contact-section" class="hover:text-[#6AAEAD] transition">Contact</a>
                     </nav>
 
                     <!-- RIGHT AUTH -->
@@ -219,12 +219,12 @@
                 <!-- MOBILE MENU -->
                 <div id="mobileMenu" class="lg:hidden hidden pb-4">
                     <nav class="flex flex-col gap-3 pt-3 text-[14px] text-slate-800">
-                        <a href="#" class="hover:text-[#6AAEAD] transition">Home</a>
-                        <a href="#" class="hover:text-[#6AAEAD] transition">About</a>
-                        <a href="#" class="hover:text-[#6AAEAD] transition">Certifications</a>
-                        <a href="#" class="hover:text-[#6AAEAD] transition">Benefits</a>
-                        <a href="#" class="hover:text-[#6AAEAD] transition">Services</a>
-                        <a href="#" class="hover:text-[#6AAEAD] transition">Contact</a>
+                        <a href="#hero-section" class="hover:text-[#6AAEAD] transition">Home</a>
+                        <a href="#about-section" class="hover:text-[#6AAEAD] transition">About</a>
+                        <a href="#program-section" class="hover:text-[#6AAEAD] transition">Certifications</a>
+                        <a href="#benefit-section" class="hover:text-[#6AAEAD] transition">Benefits</a>
+                        <a href="#service-section" class="hover:text-[#6AAEAD] transition">Services</a>
+                        <a href="#contact-section" class="hover:text-[#6AAEAD] transition">Contact</a>
                     </nav>
 
                     <div class="flex items-center gap-3 mt-4 text-[13px]">
@@ -300,10 +300,21 @@
                 </div>
 
             </div>
+            @if(session('success'))
+            <div
+                id="success-alert"
+                class="fixed top-4 left-1/2 transform -translate-x-1/2
+                    bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg
+                    opacity-100 transition-all duration-700 z-50"
+            >
+                {{ session('success') }}
+            </div>
+            <div class="hidden opacity-0 translate-y-5"></div>
+            @endif
         </header>
 
         <!-- HERO -->
-        <section class="mt-28 relative z-0">
+        <section id="hero-section" class="mt-28 relative z-0 scroll-mt-36">
             <div class="max-w-6xl mx-auto px-4 lg:px-0">
 
                 <div class="bg-[#C1DCDC] rounded-[20px] flex flex-col lg:flex-row items-stretch shadow-[0_18px_40px_rgba(0,0,0,0.12)] pb-[40px]" data-aos="fade-up">
@@ -360,7 +371,7 @@
         </section>
 
         <!-- ABOUT -->
-        <section class="mt-40">
+        <section id="about-section" class="mt-40 scroll-mt-36">
             <!-- Heading -->
             <div class="max-w-6xl mx-auto text-center px-4 lg:px-0" data-aos="fade-up">
                 <h2 class="text-2xl md:text-3xl font-semibold text-slate-900">
@@ -423,7 +434,7 @@
         </section>
 
         <!-- PROGRAMS -->
-        <section class="mt-40">
+        <section id="program-section" class="mt-40 scroll-mt-44">
             <!-- Heading -->
             <div class="max-w-6xl mx-auto text-center px-4 lg:px-0" data-aos="fade-up">
                 <h2 class="text-2xl md:text-3xl font-semibold text-slate-900">
@@ -485,7 +496,7 @@
                                     <a href="#" class="inline-flex items-center justify-center rounded-xl border border-[#6AAEAD] px-4 py-2 text-xs font-medium text-[#6AAEAD] hover:bg-[#6AAEAD] hover:text-white transition-colors">
                                         View Details
                                     </a>
-                                    <a href="#" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
+                                    <a href="{{ route('registerProgram',"Program 01 : Communication & Services") }}" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
                                         Register
                                     </a>
                                 </div>
@@ -534,7 +545,7 @@
                                     <a href="#" class="inline-flex items-center justify-center rounded-xl border border-[#6AAEAD] px-4 py-2 text-xs font-medium text-[#6AAEAD] hover:bg-[#6AAEAD] hover:text-white transition-colors">
                                         View Details
                                     </a>
-                                    <a href="#" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
+                                    <a href="{{ route('registerProgram',"Program 02 : Business & Economy") }}" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
                                         Register
                                     </a>
                                 </div>
@@ -582,7 +593,7 @@
                                     <a href="#" class="inline-flex items-center justify-center rounded-xl border border-[#6AAEAD] px-4 py-2 text-xs font-medium text-[#6AAEAD] hover:bg-[#6AAEAD] hover:text-white transition-colors">
                                         View Details
                                     </a>
-                                    <a href="#" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
+                                    <a href="{{ route('registerProgram',"Program 03 : Human Resource (HR)") }}" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
                                         Register
                                     </a>
                                 </div>
@@ -630,7 +641,7 @@
                                     <a href="#" class="inline-flex items-center justify-center rounded-xl border border-[#6AAEAD] px-4 py-2 text-xs font-medium text-[#6AAEAD] hover:bg-[#6AAEAD] hover:text-white transition-colors">
                                         View Details
                                     </a>
-                                    <a href="#" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
+                                    <a href="{{ route('registerProgram',"Program 04 : Technology") }}" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
                                         Register
                                     </a>
                                 </div>
@@ -678,7 +689,7 @@
                                     <a href="#" class="inline-flex items-center justify-center rounded-xl border border-[#6AAEAD] px-4 py-2 text-xs font-medium text-[#6AAEAD] hover:bg-[#6AAEAD] hover:text-white transition-colors">
                                         View Details
                                     </a>
-                                    <a href="#" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
+                                    <a href="{{ route('registerProgram',"Program 05 : Health & Safety") }}" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
                                         Register
                                     </a>
                                 </div>
@@ -718,7 +729,7 @@
         </section>
 
         <!-- WHY CHOOSE US -->
-        <section class="mt-40">
+        <section id="benefit-section" class="mt-40 scroll-mt-28">
             <!-- Heading -->
             <div class="max-w-6xl mx-auto text-center px-4 lg:px-0" data-aos="fade-up">
                 <h2 class="text-2xl md:text-3xl font-semibold text-slate-900">
@@ -731,7 +742,7 @@
 
             <!-- Cards -->
             <div class="max-w-6xl mx-auto mt-10 px-4 lg:px-0 grid gap-6 md:grid-cols-3">
-                <!-- Card 1 -->
+                
                 <div class="bg-gradient-to-br from-[#E8F4F3] via-[#D0E7E6] to-[#C4DEDD]
                     border border-[#A6DCD3]
                     rounded-[22px]
@@ -946,7 +957,7 @@
         </section>
 
         <!-- OUR SERVICES -->
-        <section class="mt-40">
+        <section id="service-section" class="mt-40 scroll-mt-36">
             <!-- Heading -->
             <div class="max-w-6xl mx-auto text-center px-4 lg:px-0" data-aos="fade-up">
                 <h2 class="text-2xl md:text-3xl font-semibold text-slate-900">
@@ -1034,7 +1045,7 @@
                         <div class="text-5xl text-[#6AAEAD] leading-none mb-4">“</div>
 
                         <p class="text-2xl md:text-3xl font-semibold leading-snug text-slate-900">
-                            what they say<br>
+                            What they say<br>
                             about Govind<br>
                             Abra Enterprise
                         </p>
@@ -1071,21 +1082,36 @@
 
                             <!-- quote text -->
                             <p id="testimonial-text" class="text-sm md:text-[15px] text-slate-800 leading-relaxed">
-                                “Learning at GAE is very engaging, structured, and aligned with the needs of the modern workforce.
-                                The mentors are experienced, and the material is highly relevant to current industry developments.”
+                                “{{ $testimonials->first()['text'] }}”
                             </p>
 
                             <!-- bottom row: user + arrows -->
                             <div class="mt-8 flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
-                                    <div id="testimonial-photo" class="w-10 h-10 rounded-full bg-slate-300 overflow-hidden"></div>
+                                    <div id="testimonial-photo" class="w-100">
+                                        @if($testimonials->first()->img)
+                                        <img src="{{ $testimonials->first()->img }}"
+                                            class="h-9 w-9 rounded-full object-cover border border-slate-300 shadow-sm"
+                                            alt="Avatar">
+                                        @else
+                                            {{-- INITIALS FALLBACK --}}
+                                            <div class="h-9 w-9 rounded-full bg-[#C1DCDC] text-slate-900 grid place-items-center font-semibold shadow">
+                                                {{ \Illuminate\Support\Str::upper(substr($testimonials->first()->name, 0, 1)) }}
+                                            </div>
+                                        @endif
+                                    </div>
                                     <div>
                                         <p id="testimonial-name" class="text-[13px] font-semibold text-slate-900">
-                                            Resky Fernanda
+                                            {{ $testimonials->first()['name'] }}
                                         </p>
-                                        <p id="testimonial-role" class="text-[11px] text-slate-500">
-                                            Product Designer at Tokopedia
-                                        </p>
+                                        <div class="flex flex-row gap-2">
+                                            <p id="testimonial-role" class="text-[11px] text-slate-500">
+                                                {{ $testimonials->first()['occupation'] }}
+                                            </p>
+                                            <p class="text-[11px] text-slate-500">|</p>
+                                            <span class="text-[11px] text-slate-500 inline" id="testimonial-date">{{ $testimonials->first()['created_at']->translatedFormat('d F Y') }}</span>
+                                        </div>
+                                         
                                     </div>
                                 </div>
                                 <div class="flex items-center space-x-3">
@@ -1106,6 +1132,28 @@
                     </div>
 
                 </div>
+                <div class="mt-5 lg:mt-8 flex flex-col justify-center items-center gap-2 lg:justify-between lg:flex-row">
+                    <div class="flex flex-col text-center lg:flex-row lg:items-center lg:text-start lg:gap-5">
+                        <div class="hidden lg:block" data-aos="fade-right">
+                            <img src="{{ asset('img/pencil-simple-line.png') }}"
+                                class="w-7 h-7"
+                                style="
+                                    filter: brightness(0) saturate(100%)
+                                            invert(44%) sepia(12%)
+                                            saturate(1600%) hue-rotate(123deg)
+                                            brightness(90%) contrast(90%);
+                                ">
+                        </div>
+                        <p class="text-xs lg:text-sm md:text-base text-slate-500 " data-aos="fade-right">
+                            If you’d like to share your experience, tap the button to leave us a testimonial!
+                        </p>
+                    </div>
+                    <a  href="{{ route('testimonial') }}"
+                        data-aos="fade-left"
+                        class="w-30 lg:w-50 rounded-[5px] border border-[#6AAEAD] px-2 py-1 lg:px-4 lg:py-2 text-xs lg:text-sm font-medium text-[#6AAEAD] hover:bg-[#6AAEAD] hover:text-white transition-colors">
+                        Give Testimonial
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -1115,7 +1163,7 @@
         </div>
 
         <!-- CONTACT -->
-        <section class="mt-40 relative overflow-hidden">
+        <section id="contact-section" class="mt-40 relative overflow-hidden scroll-mt-36">
             <div class="max-w-6xl mx-auto px-4 lg:px-0">
 
                 <div class="max-w-6xl mx-auto text-center px-4 lg:px-0" data-aos="fade-up">
@@ -1132,12 +1180,12 @@
                 <div class="mt-10 grid gap-10 lg:grid-cols-2 lg:items-center">
 
                     <!-- LEFT: FORM -->
-                    <form class="space-y-5" data-aos="fade-right">
+                    <form class="space-y-5" data-aos="fade-right" method="get" action="{{ route('submit-contact') }}">
 
                         <!-- Name -->
                         <div>
                             <label class="block mb-1 text-[11px] text-slate-600">Name</label>
-                            <input type="text" placeholder="Name"
+                            <input type="text" placeholder="Name" name="name"
                                 class="w-full rounded-[10px] border border-[#A6DCD3]
                                         px-4 py-2.5 text-[13px] text-slate-900
                                         focus:outline-none focus:ring-2 focus:ring-[#7EC6C4]/60
@@ -1147,7 +1195,7 @@
                         <!-- Email -->
                         <div>
                             <label class="block mb-1 text-[11px] text-slate-600">Email*</label>
-                            <input type="email" placeholder="Email"
+                            <input type="email" placeholder="Email" name="email"
                                 class="w-full rounded-[10px] border border-[#A6DCD3]
                                         px-4 py-2.5 text-[13px] text-slate-900
                                         focus:outline-none focus:ring-2 focus:ring-[#7EC6C4]/60
@@ -1157,7 +1205,7 @@
                         <!-- Message -->
                         <div>
                             <label class="block mb-1 text-[11px] text-slate-600">Message*</label>
-                            <textarea rows="5" placeholder="Message"
+                            <textarea rows="5" placeholder="Message" name="message"
                                     class="w-full rounded-[10px] border border-[#A6DCD3]
                                             px-4 py-2.5 text-[13px] text-slate-900 resize-none
                                             focus:outline-none focus:ring-2 focus:ring-[#7EC6C4]/60
@@ -1209,14 +1257,14 @@
                         and achieve your goals!
                     </h2>
 
-                    <button
+                    <a href="#program-section"
                         class="mt-8 px-10 py-3 text-sm font-semibold rounded-md
                             bg-white text-[#4D9A99]
                             shadow-[0_18px_40px_rgba(100,160,160,0.50)]
                             hover:bg-[#F9FFFF] hover:text-[#3A8584]
                             transition duration-300">
                         Join Now!
-                    </button>
+                    </a>
                 </div>
             </div>
         </section>
@@ -1367,40 +1415,22 @@
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 // Testimonials data
-                const testimonials = [
-                    {
-                        text: "“Learning at GAE is very engaging, structured, and aligned with the needs of the modern workforce. The mentors are experienced, and the material is highly relevant to current industry developments.”",
-                        name: "Resky Fernanda",
-                        role: "Product Designer at Tokopedia",
-                        photo: ""
-                    },
-                    {
-                        text: "“GAE's programs greatly helped me understand concepts more clearly. The materials are complete and easy to follow, suitable for both beginners and professionals.”",
-                        name: "Nadia Putri",
-                        role: "UI/UX Designer",
-                        photo: ""
-                    },
-                    {
-                        text: "“The training quality is outstanding! The facilitators explain in detail and provide real examples from the industry.”",
-                        name: "Dimas Pratama",
-                        role: "Fullstack Developer",
-                        photo: ""
-                    }
-                ];
+                const testimonials = @json($testimonialsJs);
 
                 let currentIndex = 0;
-
-                const textEl  = document.getElementById("testimonial-text");
-                const nameEl  = document.getElementById("testimonial-name");
-                const roleEl  = document.getElementById("testimonial-role");
-                const photoEl = document.getElementById("testimonial-photo");
 
                 const prevBtn = document.getElementById("prev-testimonial-btn");
                 const nextBtn = document.getElementById("next-testimonial-btn");
 
+                const textEl  = document.getElementById('testimonial-text');
+                const nameEl  = document.getElementById('testimonial-name');
+                const roleEl  = document.getElementById('testimonial-role');
+                const dateEl  = document.getElementById('testimonial-date');
+                const photoEl = document.getElementById('testimonial-photo');
+
                 function applyTestimonial() {
-                    if (!textEl || !nameEl || !roleEl || !photoEl) {
-                        console.warn("Testimonial elements not found.");
+                    if (!textEl || !nameEl || !roleEl || !photoEl || !dateEl) {
+                        console.warn('Testimonial elements not found.');
                         return;
                     }
 
@@ -1410,13 +1440,16 @@
                     textEl.textContent  = item.text;
                     nameEl.textContent  = item.name;
                     roleEl.textContent  = item.role;
+                    dateEl.textContent  = item.date || '';
 
                     if (item.photo) {
+                        photoEl.textContent = '';
                         photoEl.style.backgroundImage    = `url('${item.photo}')`;
-                        photoEl.style.backgroundSize     = "cover";
-                        photoEl.style.backgroundPosition = "center";
+                        photoEl.style.backgroundSize     = 'cover';
+                        photoEl.style.backgroundPosition = 'center';
+                        photoEl.style.backgroundColor    = 'transparent';
                     } else {
-                        photoEl.style.backgroundImage = "none";
+                        photoEl.innerHTML = '<div class="h-9 w-9 rounded-full bg-[#C1DCDC] text-slate-900 grid place-items-center font-semibold shadow">'+item.initial+'</div>';
                     }
                 }
 
@@ -1577,6 +1610,11 @@
                     });
                 });
             })();
+            setTimeout(() => {
+                const alert = document.getElementById('success-alert');
+                alert.classList.add('opacity-0', 'translate-y-5');
+                setTimeout(() => alert.remove(), 700);
+            }, 3000);
         </script>
 
     </body>
