@@ -43,17 +43,18 @@
             content="International certification programs, ASN-aligned development, competency-based training, and integrated consulting solutions from Indonesia to the world.">
         <meta name="twitter:image" content="{{ asset('img/og-govind.jpg') }}">
 
-       {{-- STRUCTURED DATA (SCHEMA.ORG JSON-LD) --}}
-        <script type="application/ld+json">
+        {{-- STRUCTURED DATA (SCHEMA.ORG JSON-LD) --}}
+        @verbatim
+            <script type="application/ld+json">
             {
-                "@@context": "https://schema.org",
-                "@@type": "Organization",
+                "@context": "https://schema.org",
+                "@type": "Organization",
                 "name": "Govind Abra Enterprise",
                 "url": "{{ url('/') }}",
                 "logo": "{{ asset('img/Logo.png') }}",
                 "description": "Govind Abra Enterprise is a professional education and training institution dedicated to developing world-class human resources through globally recognized International Certification Programs.",
                 "address": {
-                    "@@type": "PostalAddress",
+                    "@type": "PostalAddress",
                     "streetAddress": "Perum Bumi Rajasa A3, Bumiayu, Kedungkandang",
                     "addressLocality": "Malang",
                     "addressRegion": "Jawa Timur",
@@ -61,7 +62,7 @@
                     "addressCountry": "ID"
                 },
                 "contactPoint": [{
-                    "@@type": "ContactPoint",
+                    "@type": "ContactPoint",
                     "telephone": "+62-822-4597-5553",
                     "contactType": "customer service",
                     "areaServed": "ID",
@@ -72,20 +73,23 @@
                 ]
             }
             </script>
-            
+        @endverbatim
+
+        @verbatim
             <script type="application/ld+json">
             {
-                "@@context": "https://schema.org",
-                "@@type": "WebSite",
+                "@context": "https://schema.org",
+                "@type": "WebSite",
                 "name": "Govind Abra Enterprise",
                 "url": "{{ url('/') }}",
                 "potentialAction": {
-                    "@@type": "SearchAction",
+                    "@type": "SearchAction",
                     "target": "{{ url('/') }}?q={search_term_string}",
                     "query-input": "required name=search_term_string"
                 }
             }
-            </script>    
+            </script>
+        @endverbatim
 
         <!-- Tailwind CDN -->
         <script src="https://cdn.tailwindcss.com"></script>
@@ -742,7 +746,7 @@
 
             <!-- Cards -->
             <div class="max-w-6xl mx-auto mt-10 px-4 lg:px-0 grid gap-6 md:grid-cols-3">
-                
+
                 <div class="bg-gradient-to-br from-[#E8F4F3] via-[#D0E7E6] to-[#C4DEDD]
                     border border-[#A6DCD3]
                     rounded-[22px]
@@ -1111,7 +1115,7 @@
                                             <p class="text-[11px] text-slate-500">|</p>
                                             <span class="text-[11px] text-slate-500 inline" id="testimonial-date">{{ $testimonials->first()['created_at']->translatedFormat('d F Y') }}</span>
                                         </div>
-                                         
+
                                     </div>
                                 </div>
                                 <div class="flex items-center space-x-3">
