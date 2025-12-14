@@ -21,7 +21,7 @@
                     'is_active'   => (bool) $p->is_active,
                     'short_desc'  => $p->short_desc,
                     'long_desc'   => $p->long_desc,
-                    'image_url'   => $p->image_url,
+                    'img'   => $p->img,
                     'created_at'  => $p->created_at?->format('d M Y'),
                 ];
             })->values()->toJson() !!}
@@ -146,6 +146,11 @@
                     </thead>
                     <tbody class="divide-y divide-[#C5E2E2] text-[13px]">
                         @forelse ($programs as $index => $program)
+                            @php
+                                $avatarUrl = $program->img
+                                    ? asset('storage/programs/' . $program->img)
+                                    : 'https://ui-avatars.com/api/?name=' . urlencode($program->name) . '&background=C1DCDC&color=1E4B4B&size=64';
+                            @endphp
                             <tr class="hover:bg-[#E3F3F3] transition-colors">
                                 <td class="px-4 py-3 align-top text-[#5A9A9A]">
                                     {{ ($programs->firstItem() ?? 1) + $index }}
@@ -156,8 +161,8 @@
                                     <div class="flex items-start gap-3">
                                         <div class="h-10 w-10 rounded-xl overflow-hidden bg-[#D7ECEC] border border-[#A3D4D4] flex items-center justify-center shadow-sm">
                                             <img
-                                                src="{{ $program->image_url }}"
-                                                alt="Image {{ $program->name }}"
+                                                src="{{ $avatarUrl }}"
+                                                alt="Avatar {{ $program->name }}"
                                                 class="h-full w-full object-cover"
                                             >
                                         </div>
@@ -226,14 +231,14 @@
                                                 short_desc: @js($program->short_desc),
                                                 long_desc: @js($program->long_desc),
                                                 is_active: {{ $program->is_active ? 'true' : 'false' }},
-                                                image_url: @js($program->image_url),
+                                                img: @js($program->img),
                                             })"
                                             class="inline-flex items-center rounded-lg border border-[#E3C45B] bg-[#FFF8D9] px-2 py-1 text-[11px] font-medium text-[#856300] hover:bg-[#FDEEB7] transition"
                                         >
                                             Edit
                                         </button>
 
-                                        <form action="{{ route('admin.program.destroy', $program) }}" method="POST"
+                                        <form action="{{ route('admin.program.delete', $program) }}" method="POST"
                                             onsubmit="return confirm('Delete this program?');">
                                             @csrf
                                             @method('DELETE')
@@ -496,7 +501,7 @@
 
                         <div class="flex items-center gap-3">
                             <div class="h-10 w-10 rounded-xl overflow-hidden bg-[#D7ECEC] border border-[#A3D4D4] flex items-center justify-center shadow-sm">
-                                <img :src="editProgram.image_url" alt="Preview Program" class="h-full w-full object-cover">
+                                <img :src="editProgram.img" alt="Preview Program" class="h-full w-full object-cover">
                             </div>
                             <div class="flex-1">
                                 <input type="file" name="img" accept="image/*"
@@ -555,7 +560,7 @@
                     short_desc: '',
                     long_desc: '',
                     is_active: true,
-                    image_url: '',
+                    img: '',
                 },
 
                 init(payload) {
@@ -580,7 +585,7 @@
                         short_desc: program.short_desc || '',
                         long_desc: program.long_desc || '',
                         is_active: !!program.is_active,
-                        image_url: program.image_url,
+                        img: program.img,
                     };
                     this.showEdit = true;
                 },

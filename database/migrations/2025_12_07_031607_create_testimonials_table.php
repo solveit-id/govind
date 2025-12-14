@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('occupation');
             $table->string('text');
+            $table->boolean('is_visible')->default(true);
             $table->string('img')->nullable();
             $table->timestamps();
         });
