@@ -12,8 +12,16 @@ class Testimonial extends Model
     protected $fillable = [
         'name',
         'occupation',
+        'text',
         'img',
-        'text'
+        'is_visible'
     ];
-    //
+
+    protected $casts = [
+        'is_visible' => 'boolean',
+    ];
+
+    public function scopeVisible($query) {
+        return $query->where('is_visible', true);
+    }
 }

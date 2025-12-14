@@ -135,7 +135,7 @@
 
                                         <!-- Delete -->
                                         <form
-                                            action="{{ route('admin.category.destroy', $category) }}"
+                                            action="{{ route('admin.category.delete', $category) }}"
                                             method="POST"
                                             onsubmit="return confirm('Delete this category?');"
                                         >

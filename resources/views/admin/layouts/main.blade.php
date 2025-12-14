@@ -162,6 +162,24 @@
                         Program
                     </a>
 
+                    <!-- Testimonial -->
+                    <a href="{{ route('admin.testimonial') }}"
+                    @class([
+                        'flex items-center gap-2 rounded-xl px-3 py-2 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6AAEAD]',
+                        'bg-[#C1DCDC]/80 text-[#1E4B4B] font-semibold shadow-sm ring-1 ring-[#6AAEAD]/60'
+                            => Request::routeIs('admin.testimonial*'),
+                        'text-[#285E5E] hover:bg-[#C1DCDC]/40 hover:text-[#0F3535]'
+                            => !Request::routeIs('admin.testimonial*'),
+                    ])>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 text-current"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M8 9h4m-6 4h6m6-5h-3m-1 4h4m-9 7l-3 1 1-3m13-2a3 3 0 01-3 3H9a3 3 0 01-3-3V7a3 3 0 013-3h8a3 3 0 013 3v10z" />
+                        </svg>
+                        Testimonial
+                    </a>
+
                 </nav>
 
                 <!-- Admin Info -->

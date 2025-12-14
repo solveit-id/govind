@@ -455,250 +455,95 @@
 
                     <!-- Slides -->
                     <div class="overflow-hidden rounded-3xl bg-white/95 shadow-[0_24px_80px_rgba(15,23,42,0.16)] ring-1 ring-slate-100">
-                        <!-- Slide 1 -->
-                        <article
-                            class="flex flex-col md:flex-row gap-0 md:gap-6 items-stretch min-h-[260px]"
-                            data-program-slide
-                        >
-                            <!-- Image -->
-                            <div class="md:w-1/2 relative h-52 md:h-auto overflow-hidden">
-                                <img
-                                    src="https://images.pexels.com/photos/1181649/pexels-photo-1181649.jpeg?auto=compress&cs=tinysrgb&w=800"
-                                    alt="Communication & Services"
-                                    class="h-full w-full object-cover transition-transform duration-700"
-                                    data-program-image
-                                />
-                                <div class="pointer-events-none absolute inset-0 bg-gradient-to-tr from-slate-900/40 via-slate-900/0"></div>
-                                <span
-                                    class="absolute bottom-4 left-4 inline-flex items-center rounded-full bg-white/95 px-3 py-1 text-[11px] font-medium text-slate-800 shadow-sm"
-                                >
-                                    <span class="mr-1.5 h-1.5 w-1.5 rounded-full bg-[#6AAEAD]"></span>
-                                    Soft Skills
-                                </span>
-                            </div>
+                        @forelse($programs as $index => $program)
+                            @php
+                                $programNo   = str_pad($index + 1, 2, '0', STR_PAD_LEFT);
+                                $badgeLabel  = $program->category->name ?? 'Program';
+                                $imageUrl    = $program->image_url
+                                    ?? ($program->img
+                                        ? asset('storage/programs/' . $program->img)
+                                        : 'https://images.pexels.com/photos/1181649/pexels-photo-1181649.jpeg?auto=compress&cs=tinysrgb&w=800');
+                                $shortDesc   = $program->short_desc ?: 'No short description available yet.';
+                                $longDesc    = $program->long_desc ?: 'No detailed description available yet.';
+                                $duration    = $program->duration ?: '-';
+                                $priceLabel  = 'Rp ' . number_format($program->price, 0, ',', '.');
+                                $registerUrl = route('register-program', $program->slug ?? $program->name);
+                            @endphp
 
-                            <!-- Content -->
-                            <div class="md:w-1/2 p-6 md:p-7 flex flex-col justify-center">
-                                <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#6AAEAD] mb-1.5">
-                                    Program 01
-                                </p>
-                                <h3 class="text-lg md:text-xl font-semibold text-slate-900">
-                                    Communication &amp; Services
-                                </h3>
-                                <p class="mt-2 text-sm text-slate-500 leading-relaxed">
-                                    Build strong communication, customer care, and service excellence capabilities for
-                                    professional and frontline roles.
-                                </p>
-
-                                <ul class="mt-3 space-y-1.5 text-xs text-slate-500">
-                                    <li>• Duration: 4–6 weeks</li>
-                                    <li>• Format: Online live sessions & assignments</li>
-                                </ul>
-
-                                <!-- Buttons -->
-                                <div class="mt-5 flex flex-wrap gap-3">
-                                    <a href="#" class="inline-flex items-center justify-center rounded-xl border border-[#6AAEAD] px-4 py-2 text-xs font-medium text-[#6AAEAD] hover:bg-[#6AAEAD] hover:text-white transition-colors">
-                                        View Details
-                                    </a>
-                                    <a href="{{ route('registerProgram',"Program 01 : Communication & Services") }}" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
-                                        Register
-                                    </a>
+                            <article
+                                class="{{ $index === 0 ? '' : 'hidden' }} flex flex-col md:flex-row gap-0 md:gap-6 items-stretch min-h-[260px]"
+                                data-program-slide
+                            >
+                                <!-- Image -->
+                                <div class="md:w-1/2 relative h-52 md:h-auto overflow-hidden">
+                                    <img
+                                        src="{{ $imageUrl }}"
+                                        alt="{{ $program->name }}"
+                                        class="h-full w-full object-cover transition-transform duration-700"
+                                        data-program-image
+                                    />
+                                    <div class="pointer-events-none absolute inset-0 bg-gradient-to-tr from-slate-900/40 via-slate-900/0"></div>
+                                    <span
+                                        class="absolute bottom-4 left-4 inline-flex items-center rounded-full bg-white/95 px-3 py-1 text-[11px] font-medium text-slate-800 shadow-sm"
+                                    >
+                                        <span class="mr-1.5 h-1.5 w-1.5 rounded-full bg-[#6AAEAD]"></span>
+                                        {{ $badgeLabel }}
+                                    </span>
                                 </div>
-                            </div>
-                        </article>
 
-                        <!-- Slide 2 -->
-                        <article
-                            class="hidden flex-col md:flex-row gap-0 md:gap-6 items-stretch min-h-[260px]"
-                            data-program-slide
-                        >
-                            <div class="md:w-1/2 relative h-52 md:h-auto overflow-hidden">
-                                <img
-                                    src="https://images.pexels.com/photos/1181534/pexels-photo-1181534.jpeg?auto=compress&cs=tinysrgb&w=800"
-                                    alt="Business & Economy"
-                                    class="h-full w-full object-cover transition-transform duration-700"
-                                    data-program-image
-                                />
-                                <div class="pointer-events-none absolute inset-0 bg-gradient-to-tr from-slate-900/40 via-slate-900/0"></div>
-                                <span
-                                    class="absolute bottom-4 left-4 inline-flex items-center rounded-full bg-white/95 px-3 py-1 text-[11px] font-medium text-slate-800 shadow-sm"
-                                >
-                                    <span class="mr-1.5 h-1.5 w-1.5 rounded-full bg-[#6AAEAD]"></span>
-                                    Management
-                                </span>
-                            </div>
+                                <!-- Content -->
+                                <div class="md:w-1/2 p-6 md:p-7 flex flex-col justify-center">
+                                    <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#6AAEAD] mb-1.5">
+                                        Program {{ $programNo }}
+                                    </p>
 
-                            <div class="md:w-1/2 p-6 md:p-7 flex flex-col justify-center">
-                                <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#6AAEAD] mb-1.5">
-                                    Program 02
-                                </p>
-                                <h3 class="text-lg md:text-xl font-semibold text-slate-900">
-                                    Business &amp; Economy
-                                </h3>
-                                <p class="mt-2 text-sm text-slate-500 leading-relaxed">
-                                    Strengthen your understanding of business fundamentals, finance basics, and strategic
-                                    decision making.
-                                </p>
+                                    <h3 class="text-lg md:text-xl font-semibold text-slate-900">
+                                        {{ $program->name }}
+                                    </h3>
 
-                                <ul class="mt-3 space-y-1.5 text-xs text-slate-500">
-                                    <li>• Duration: 6–8 weeks</li>
-                                    <li>• Format: Online + capstone project</li>
-                                </ul>
+                                    <p class="mt-2 text-sm text-slate-500 leading-relaxed">
+                                        {{ $shortDesc }}
+                                    </p>
 
-                                <div class="mt-5 flex flex-wrap gap-3">
-                                    <a href="#" class="inline-flex items-center justify-center rounded-xl border border-[#6AAEAD] px-4 py-2 text-xs font-medium text-[#6AAEAD] hover:bg-[#6AAEAD] hover:text-white transition-colors">
-                                        View Details
-                                    </a>
-                                    <a href="{{ route('registerProgram',"Program 02 : Business & Economy") }}" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
-                                        Register
-                                    </a>
+                                    <ul class="mt-3 space-y-1.5 text-xs text-slate-500">
+                                        <li>• Duration: {{ $duration }}</li>
+                                        <li>• Price: {{ $priceLabel }}</li>
+                                    </ul>
+
+                                    <div class="mt-5 flex flex-wrap gap-3">
+                                        {{-- View Details (POPUP TRIGGER) --}}
+                                        <button
+                                            type="button"
+                                            class="inline-flex items-center justify-center rounded-xl border border-[#6AAEAD] px-4 py-2 text-xs font-medium text-[#6AAEAD] hover:bg-[#6AAEAD] hover:text-white transition-colors"
+                                            data-program-detail-trigger
+                                            data-program-no="{{ $programNo }}"
+                                            data-program-name="{{ e($program->name) }}"
+                                            data-program-category="{{ e($badgeLabel) }}"
+                                            data-program-duration="{{ e($duration) }}"
+                                            data-program-price="{{ e($priceLabel) }}"
+                                            data-program-short="{{ e($shortDesc) }}"
+                                            data-program-long="{{ e($longDesc) }}"
+                                            data-program-image="{{ $imageUrl }}"
+                                            data-program-register-url="{{ $registerUrl }}"
+                                        >
+                                            View Details
+                                        </button>
+
+                                        {{-- Register program --}}
+                                        <a href="{{ $registerUrl }}"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
+                                            Register
+                                        </a>
+                                    </div>
                                 </div>
+                            </article>
+                        @empty
+                            <div class="p-8 text-center text-sm text-slate-500">
+                                No programs available at the moment.
                             </div>
-                        </article>
-
-                        <!-- Slide 3 -->
-                        <article
-                            class="hidden flex-col md:flex-row gap-0 md:gap-6 items-stretch min-h-[260px]"
-                            data-program-slide
-                        >
-                            <div class="md:w-1/2 relative h-52 md:h-auto overflow-hidden">
-                                <img
-                                    src="https://images.pexels.com/photos/845451/pexels-photo-845451.jpeg?auto=compress&cs=tinysrgb&w=800"
-                                    alt="Human Resource (HR)"
-                                    class="h-full w-full object-cover transition-transform duration-700"
-                                    data-program-image
-                                />
-                                <div class="pointer-events-none absolute inset-0 bg-gradient-to-tr from-slate-900/40 via-slate-900/0"></div>
-                                <span
-                                    class="absolute bottom-4 left-4 inline-flex items-center rounded-full bg-white/95 px-3 py-1 text-[11px] font-medium text-slate-800 shadow-sm"
-                                >
-                                    <span class="mr-1.5 h-1.5 w-1.5 rounded-full bg-[#6AAEAD]"></span>
-                                    People
-                                </span>
-                            </div>
-
-                            <div class="md:w-1/2 p-6 md:p-7 flex flex-col justify-center">
-                                <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#6AAEAD] mb-1.5">
-                                    Program 03
-                                </p>
-                                <h3 class="text-lg md:text-xl font-semibold text-slate-900">
-                                    Human Resource (HR)
-                                </h3>
-                                <p class="mt-2 text-sm text-slate-500 leading-relaxed">
-                                    Learn modern HR practices, recruitment, performance management, and people development.
-                                </p>
-
-                                <ul class="mt-3 space-y-1.5 text-xs text-slate-500">
-                                    <li>• Duration: 4–6 weeks</li>
-                                    <li>• Format: Online live sessions & case studies</li>
-                                </ul>
-
-                                <div class="mt-5 flex flex-wrap gap-3">
-                                    <a href="#" class="inline-flex items-center justify-center rounded-xl border border-[#6AAEAD] px-4 py-2 text-xs font-medium text-[#6AAEAD] hover:bg-[#6AAEAD] hover:text-white transition-colors">
-                                        View Details
-                                    </a>
-                                    <a href="{{ route('registerProgram',"Program 03 : Human Resource (HR)") }}" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
-                                        Register
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Slide 4 -->
-                        <article
-                            class="hidden flex-col md:flex-row gap-0 md:gap-6 items-stretch min-h-[260px]"
-                            data-program-slide
-                        >
-                            <div class="md:w-1/2 relative h-52 md:h-auto overflow-hidden">
-                                <img
-                                    src="https://images.pexels.com/photos/1181562/pexels-photo-1181562.jpeg?auto=compress&cs=tinysrgb&w=800"
-                                    alt="Technology"
-                                    class="h-full w-full object-cover transition-transform duration-700"
-                                    data-program-image
-                                />
-                                <div class="pointer-events-none absolute inset-0 bg-gradient-to-tr from-slate-900/40 via-slate-900/0"></div>
-                                <span
-                                    class="absolute bottom-4 left-4 inline-flex items-center rounded-full bg-white/95 px-3 py-1 text-[11px] font-medium text-slate-800 shadow-sm"
-                                >
-                                    <span class="mr-1.5 h-1.5 w-1.5 rounded-full bg-[#6AAEAD]"></span>
-                                    Tech
-                                </span>
-                            </div>
-
-                            <div class="md:w-1/2 p-6 md:p-7 flex flex-col justify-center">
-                                <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#6AAEAD] mb-1.5">
-                                    Program 04
-                                </p>
-                                <h3 class="text-lg md:text-xl font-semibold text-slate-900">
-                                    Technology
-                                </h3>
-                                <p class="mt-2 text-sm text-slate-500 leading-relaxed">
-                                    Explore digital tools, IT fundamentals, and technology trends relevant for modern roles.
-                                </p>
-
-                                <ul class="mt-3 space-y-1.5 text-xs text-slate-500">
-                                    <li>• Duration: 6–8 weeks</li>
-                                    <li>• Format: Online + hands-on project</li>
-                                </ul>
-
-                                <div class="mt-5 flex flex-wrap gap-3">
-                                    <a href="#" class="inline-flex items-center justify-center rounded-xl border border-[#6AAEAD] px-4 py-2 text-xs font-medium text-[#6AAEAD] hover:bg-[#6AAEAD] hover:text-white transition-colors">
-                                        View Details
-                                    </a>
-                                    <a href="{{ route('registerProgram',"Program 04 : Technology") }}" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
-                                        Register
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Slide 5 -->
-                        <article
-                            class="hidden flex-col md:flex-row gap-0 md:gap-6 items-stretch min-h-[260px]"
-                            data-program-slide
-                        >
-                            <div class="md:w-1/2 relative h-52 md:h-auto overflow-hidden">
-                                <img
-                                    src="https://images.pexels.com/photos/3828832/pexels-photo-3828832.jpeg?auto=compress&cs=tinysrgb&w=800"
-                                    alt="Health & Safety"
-                                    class="h-full w-full object-cover transition-transform duration-700"
-                                    data-program-image
-                                />
-                                <div class="pointer-events-none absolute inset-0 bg-gradient-to-tr from-slate-900/40 via-slate-900/0"></div>
-                                <span
-                                    class="absolute bottom-4 left-4 inline-flex items-center rounded-full bg-white/95 px-3 py-1 text-[11px] font-medium text-slate-800 shadow-sm"
-                                >
-                                    <span class="mr-1.5 h-1.5 w-1.5 rounded-full bg-[#6AAEAD]"></span>
-                                    Compliance
-                                </span>
-                            </div>
-
-                            <div class="md:w-1/2 p-6 md:p-7 flex flex-col justify-center">
-                                <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#6AAEAD] mb-1.5">
-                                    Program 05
-                                </p>
-                                <h3 class="text-lg md:text-xl font-semibold text-slate-900">
-                                    Health &amp; Safety
-                                </h3>
-                                <p class="mt-2 text-sm text-slate-500 leading-relaxed">
-                                    Understand workplace safety, risk awareness, and basic health & safety compliance.
-                                </p>
-
-                                <ul class="mt-3 space-y-1.5 text-xs text-slate-500">
-                                    <li>• Duration: 3–4 weeks</li>
-                                    <li>• Format: Online + assessment</li>
-                                </ul>
-
-                                <div class="mt-5 flex flex-wrap gap-3">
-                                    <a href="#" class="inline-flex items-center justify-center rounded-xl border border-[#6AAEAD] px-4 py-2 text-xs font-medium text-[#6AAEAD] hover:bg-[#6AAEAD] hover:text-white transition-colors">
-                                        View Details
-                                    </a>
-                                    <a href="{{ route('registerProgram',"Program 05 : Health & Safety") }}" class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
-                                        Register
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
+                        @endforelse
                     </div>
 
                     <!-- Controls -->
@@ -730,9 +575,107 @@
                     </div>
                 </div>
             </div>
+
+            {{-- ================= MODAL VIEW DETAILS ================= --}}
+            <div
+                id="programModal"
+                class="fixed inset-0 z-50 hidden"
+                aria-hidden="true"
+            >
+                <!-- Overlay -->
+                <div
+                    class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
+                    data-program-modal-overlay
+                ></div>
+
+                <!-- Modal Card -->
+                <div class="relative min-h-full flex items-center justify-center px-4 py-8">
+                    <div class="relative w-full max-w-xl bg-white rounded-3xl shadow-[0_24px_80px_rgba(15,23,42,0.24)] overflow-hidden">
+                        <!-- Image -->
+                        <div class="relative h-40 md:h-48 overflow-hidden">
+                            <img
+                                src=""
+                                alt="Program preview"
+                                class="h-full w-full object-cover"
+                                data-program-modal-image
+                            />
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/10"></div>
+
+                            <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+                                <span
+                                    class="inline-flex items-center rounded-full bg-white/90 px-3 py-1 text-[11px] font-medium text-slate-800 shadow-sm"
+                                    data-program-modal-category
+                                >
+                                    <!-- filled via JS -->
+                                </span>
+                                <span class="text-[11px] font-semibold text-white/90" data-program-modal-number>
+                                    <!-- Program 01 -->
+                                </span>
+                            </div>
+
+                            <!-- Close Button -->
+                            <button
+                                type="button"
+                                class="absolute top-3 right-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-slate-700 hover:bg-white shadow-sm text-lg"
+                                data-program-modal-close
+                                aria-label="Close"
+                            >
+                                ×
+                            </button>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="p-6 md:p-7">
+                            <h3
+                                class="text-lg md:text-xl font-semibold text-slate-900"
+                                data-program-modal-title
+                            ></h3>
+
+                            <p
+                                class="mt-2 text-sm text-slate-500 leading-relaxed"
+                                data-program-modal-short
+                            ></p>
+
+                            <p
+                                class="mt-3 text-sm text-slate-600 leading-relaxed"
+                                data-program-modal-long
+                            ></p>
+
+                            <dl class="mt-4 grid grid-cols-2 gap-3 text-xs text-slate-600">
+                                <div class="flex flex-col">
+                                    <dt class="font-semibold text-slate-800 mb-0.5">Duration</dt>
+                                    <dd data-program-modal-duration>-</dd>
+                                </div>
+                                <div class="flex flex-col">
+                                    <dt class="font-semibold text-slate-800 mb-0.5">Price</dt>
+                                    <dd data-program-modal-price>-</dd>
+                                </div>
+                            </dl>
+
+                            <div class="mt-6 flex items-center justify-end gap-3">
+                                <button
+                                    type="button"
+                                    class="inline-flex items-center justify-center rounded-xl border border-slate-200 px-4 py-2 text-xs font-medium text-slate-600 hover:bg-slate-50 transition-colors"
+                                    data-program-modal-close
+                                >
+                                    Close
+                                </button>
+
+                                <a href="#"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-program-modal-register
+                                    class="inline-flex items-center justify-center rounded-xl bg-[#6AAEAD] px-4 py-2 text-xs font-medium text-white hover:bg-[#5ba09f] transition-colors">
+                                    Register for this Program
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- WHY CHOOSE US -->
+        <!-- BENEFIT US -->
         <section id="benefit-section" class="mt-40 scroll-mt-28">
             <!-- Heading -->
             <div class="max-w-6xl mx-auto text-center px-4 lg:px-0" data-aos="fade-up">
@@ -1029,7 +972,7 @@
         </section>
 
         <!-- TESTIMONIALS -->
-        <section class="mt-40 relative overflow-hidden">
+        <section id="testimonial-section" class="mt-40 relative overflow-hidden">
             <div class="max-w-6xl mx-auto px-4 lg:px-0">
 
                 <div class="max-w-6xl mx-auto text-center px-4 lg:px-0" data-aos="fade-up">
@@ -1061,6 +1004,15 @@
 
                     <!-- RIGHT SIDE CARD -->
                     <div class="lg:w-7/12 relative" data-aos="fade-left">
+                        @php
+                            $firstTestimonial = $testimonials->first();
+                            $firstAvatarUrl = null;
+
+                            if ($firstTestimonial && $firstTestimonial->img) {
+                                // img sudah disiapkan di DB, cukup bungkus asset()
+                                $firstAvatarUrl = asset($firstTestimonial->img);
+                            }
+                        @endphp
 
                         <div class="bg-gradient-to-br from-[#E8F4F3] via-[#D0E7E6] to-[#C4DEDD]
                                     border border-[#A6DCD3]
@@ -1084,40 +1036,55 @@
                                 </div>
                             </div>
 
-                            <!-- quote text -->
+                            {{-- QUOTE TEXT (akan dioverwrite JS, tapi ada fallback kalau nggak ada data) --}}
                             <p id="testimonial-text" class="text-sm md:text-[15px] text-slate-800 leading-relaxed">
-                                “{{ $testimonials->first()['text'] }}”
+                                @if($firstTestimonial)
+                                    “{{ $firstTestimonial->text }}”
+                                @else
+                                    “There are no testimonials yet. Be the first to share your experience with Govind Abra Enterprise.”
+                                @endif
                             </p>
 
                             <!-- bottom row: user + arrows -->
                             <div class="mt-8 flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
-                                    <div id="testimonial-photo" class="w-100">
-                                        @if($testimonials->first()->img)
-                                        <img src="{{ $testimonials->first()->img }}"
-                                            class="h-9 w-9 rounded-full object-cover border border-slate-300 shadow-sm"
-                                            alt="Avatar">
-                                        @else
-                                            {{-- INITIALS FALLBACK --}}
+                                    {{-- WRAPPER FOTO / INITIAL (ISINYA AKAN DIGANTI JS) --}}
+                                    <div id="testimonial-photo">
+                                        @if($firstTestimonial && $firstAvatarUrl)
+                                            <img src="{{ $firstAvatarUrl }}"
+                                                class="h-9 w-9 rounded-full object-cover border border-slate-300 shadow-sm"
+                                                alt="Avatar">
+                                        @elseif($firstTestimonial)
                                             <div class="h-9 w-9 rounded-full bg-[#C1DCDC] text-slate-900 grid place-items-center font-semibold shadow">
-                                                {{ \Illuminate\Support\Str::upper(substr($testimonials->first()->name, 0, 1)) }}
+                                                {{ \Illuminate\Support\Str::upper(substr($firstTestimonial->name, 0, 1)) }}
+                                            </div>
+                                        @else
+                                            <div class="h-9 w-9 rounded-full bg-[#C1DCDC] text-slate-900 grid place-items-center font-semibold shadow">
+                                                G
                                             </div>
                                         @endif
                                     </div>
+
                                     <div>
                                         <p id="testimonial-name" class="text-[13px] font-semibold text-slate-900">
-                                            {{ $testimonials->first()['name'] }}
+                                            {{ $firstTestimonial->name ?? 'Govind Participant' }}
                                         </p>
                                         <div class="flex flex-row gap-2">
                                             <p id="testimonial-role" class="text-[11px] text-slate-500">
-                                                {{ $testimonials->first()['occupation'] }}
+                                                {{ $firstTestimonial->occupation ?? 'Program Participant' }}
                                             </p>
                                             <p class="text-[11px] text-slate-500">|</p>
-                                            <span class="text-[11px] text-slate-500 inline" id="testimonial-date">{{ $testimonials->first()['created_at']->translatedFormat('d F Y') }}</span>
+                                            <span id="testimonial-date" class="text-[11px] text-slate-500 inline">
+                                                @if($firstTestimonial)
+                                                    {{ $firstTestimonial->created_at->translatedFormat('d F Y') }}
+                                                @else
+                                                    {{ now()->translatedFormat('d F Y') }}
+                                                @endif
+                                            </span>
                                         </div>
-
                                     </div>
                                 </div>
+
                                 <div class="flex items-center space-x-3">
                                     <button
                                         id="prev-testimonial-btn"
@@ -1298,12 +1265,75 @@
                         </p>
 
                         <!-- SOCIAL MEDIA -->
-                        <div class="flex items-center space-x-4 text-white text-[16px]">
-                            <span class="hover:text-[#D4AC37] cursor-pointer"></span>
-                            <span class="hover:text-[#D4AC37] cursor-pointer"></span>
-                            <span class="hover:text-[#D4AC37] cursor-pointer"></span>
-                            <span class="hover:text-[#D4AC37] cursor-pointer"></span>
-                            <span class="hover:text-[#D4AC37] cursor-pointer"></span>
+                        <div class="flex items-center space-x-4 text-white text-[18px]">
+                            <!-- Instagram -->
+                            <a href="https://www.instagram.com/govind.abra?igsh=eDhjbGJja2gya3pt"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="group transition"
+                            >
+                                <svg class="w-5 h-5 text-white group-hover:text-[#B48B2E] transition" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2c1.654 0 3
+                                    1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3
+                                    3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.75-.75a1.25
+                                    1.25 0 100 2.5 1.25 1.25 0 000-2.5z" />
+                                </svg>
+                            </a>
+
+                            <!-- WhatsApp -->
+                            <a href="https://wa.me/6282245975553"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="group transition"
+                            >
+                                <svg class="w-5 h-5 text-white group-hover:text-[#B48B2E] transition" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20.52 3.48A11.8 11.8 0 0012 0a11.8 11.8 0 00-8.52
+                                    3.48A11.8 11.8 0 000 12c0 2.07.54 4.1 1.56 5.88L0 24l6.3-1.62A11.96
+                                    11.96 0 0012 24a11.8 11.8 0 008.52-3.48A11.8 11.8 0 0024 12c0-3.19-1.24-6.21-3.48-8.52zM12
+                                    22c-1.77 0-3.49-.46-5.04-1.34L5 21l.34-1.96A9.96 9.96 0 012 12a10
+                                    10 0 1110 10zm5.35-6.65c-.29-.15-1.71-.84-1.98-.94-.27-.1-.47-.15-.67
+                                    .15-.2.29-.77.94-.95 1.14-.17.2-.35.22-.64.07-.29-.15-1.23-.45-2.34-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.35.43-.52.15-.17.2-.29.3-.49.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2
+                                    0-.52.07-.79.37-.27.29-1.04 1.01-1.04 2.47s1.07 2.86 1.22 3.06c.15.2 2.1
+                                    3.34 5.08 4.68 2.98 1.34 2.98.89 3.52.83.54-.05 1.71-.7 1.96-1.38.24-.69.24-1.28.17-1.38-.07-.1-.27-.17-.57-.32z"/>
+                                </svg>
+                            </a>
+
+                            <!-- YouTube -->
+                            <a href="#" class="group transition">
+                                <svg class="w-5 h-5 text-white group-hover:text-[#B48B2E] transition" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M23.5 6.2s-.2-1.7-.9-2.5c-.8-.9-1.6-.9-2-1C17.5 2.3 12
+                                    2.3 12 2.3h-.1s-5.5 0-8.6.4c-.4.1-1.2.1-2
+                                    1-.7.8-.9 2.5-.9 2.5S0 8.1 0 10.1v1.8c0 2 .2 3.9.2
+                                    3.9s.2 1.7.9 2.5c.8.9 1.9.9 2.4 1 1.8.2 7.5.4 7.5.4s5.5 0 8.6-.4c.4-.1
+                                    1.2-.1 2-1 .7-.8.9-2.5.9-2.5s.2-2 .2-3.9v-1.8c0-2-.2-3.9-.2-3.9zM9.6
+                                    14.6V7.8l6.2 3.4-6.2 3.4z"/>
+                                </svg>
+                            </a>
+
+                            <!-- LinkedIn -->
+                            <a href="#" class="group transition">
+                                <svg class="w-5 h-5 text-white group-hover:text-[#B48B2E] transition" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M4.98 3.5C4.98 5 3.9 6 2.5 6S0 5 0 3.5 1.08 1 2.48
+                                    1s2.5 1 2.5 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.1c.5-.9 1.8-2.2
+                                    4-2.2 4.3 0 5.1 2.8 5.1 6.4V24h-4v-8.2c0-1.9-.1-4.4-2.7-4.4-2.7
+                                    0-3.1 2.1-3.1 4.3V24h-4V8z"/>
+                                </svg>
+                            </a>
+
+                            <!-- Twitter/X -->
+                            <a href="#" class="group transition">
+                                <svg class="w-5 h-5 text-white group-hover:text-[#B48B2E] transition" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M23.9 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.7-1.5 2.1-2.6-.9.6-2 .9-3
+                                    1.2-1-1-2.3-1.5-3.7-1.5-2.9 0-5.2 2.5-5.2 5.4v.8C7.7 8.5 4.1
+                                    6.3 1.7 2.9c-.3.6-.5 1.3-.5 2 0 1.8 1 3.4 2.5
+                                    4.4-.8 0-1.6-.3-2.3-.6v.1c0 2.6 1.7 4.7 4.1
+                                    5.2-.4.1-.8.2-1.3.2-.3 0-.6 0-.9-.1.6 2.2 2.6 3.8
+                                    5 3.9-1.8 1.5-4.1 2.4-6.5 2.4-.4 0-.8
+                                    0-1.2-.1 2.3 1.6 5.1 2.5 8 2.5 9.5 0 14.7-8.4
+                                    14.7-15.7v-.7c1-.8 1.8-1.6 2.5-2.5z"/>
+                                </svg>
+                            </a>
+
                         </div>
                     </div>
 
@@ -1312,13 +1342,14 @@
 
                         <!-- HOME -->
                         <div class="mb-8 md:mb-0">
-                            <h4 class="text-[13px] font-semibold mb-3 text-white">Home</h4>
+                            <h4 class="text-[13px] font-semibold mb-3 text-white">Navigation</h4>
                             <ul class="space-y-2 text-[12px] text-slate-200">
-                                <li><a href="#" class="hover:text-white transition">Home</a></li>
-                                <li><a href="#" class="hover:text-white transition">Programs</a></li>
-                                <li><a href="#" class="hover:text-white transition">Benefits</a></li>
-                                <li><a href="#" class="hover:text-white transition">Why Choose Us</a></li>
-                                <li><a href="#" class="hover:text-white transition">Testimonials</a></li>
+                                <li><a href="#hero-section" class="hover:text-[#B48B2E] transition">Home</a></li>
+                                <li><a href="#about-section" class="hover:text-[#B48B2E] transition">About</a></li>
+                                <li><a href="#program-section" class="hover:text-[#B48B2E] transition">Certifications</a></li>
+                                <li><a href="#benefit-section" class="hover:text-[#B48B2E] transition">Benefits</a></li>
+                                <li><a href="#service-section" class="hover:text-[#B48B2E] transition">Services</a></li>
+                                <li><a href="#contact-section" class="hover:text-[#B48B2E] transition">Contact</a></li>
                             </ul>
                         </div>
 
@@ -1326,10 +1357,10 @@
                         <div class="mb-8 md:mb-0">
                             <h4 class="text-[13px] font-semibold mb-3 text-white">About</h4>
                             <ul class="space-y-2 text-[12px] text-slate-200">
-                                <li><a href="#" class="hover:text-white transition">Company</a></li>
-                                <li><a href="#" class="hover:text-white transition">Certifications</a></li>
-                                <li><a href="#" class="hover:text-white transition">Gallery</a></li>
-                                <li><a href="#" class="hover:text-white transition">Our News</a></li>
+                                <li><a href="#" class="pointer-events-none cursor-not-allowed transition">Company</a></li>
+                                <li><a href="#" class="pointer-events-none cursor-not-allowed transition">Certifications</a></li>
+                                <li><a href="#" class="pointer-events-none cursor-not-allowed transition">Gallery</a></li>
+                                <li><a href="#" class="pointer-events-none cursor-not-allowed transition">Our News</a></li>
                             </ul>
                         </div>
 
@@ -1337,21 +1368,42 @@
                         <div>
                             <h4 class="text-[13px] font-semibold mb-3 text-white">Contact</h4>
                             <ul class="space-y-3 text-[12px] text-slate-200">
+
+                                <!-- Phone -->
                                 <li class="flex items-start space-x-3">
-                                    <span class="text-[#D4AC37] text-[13px]"></span>
+                                    <svg class="w-4 h-4 text-[#B48B2E] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M6.6 10.8a15.5 15.5 0 006.6 6.6l2.2-2.2c.3-.3.7-.4
+                                        1-.3 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V21c0 .6-.4 1-1
+                                        1C10.5 22 2 13.5 2 3c0-.6.4-1 1-1h3.5c.6 0
+                                        1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .8-.3 1l-2.2 2.2z"/>
+                                    </svg>
                                     <span>(406) 555-0120</span>
                                 </li>
+
+                                <!-- Email -->
                                 <li class="flex items-start space-x-3">
-                                    <span class="text-[#D4AC37] text-[13px]"></span>
+                                    <svg class="w-4 h-4 text-[#B48B2E] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2
+                                        2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0
+                                        4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                    </svg>
                                     <span>kreasi.digital@gmail.com</span>
                                 </li>
+
+                                <!-- Address -->
                                 <li class="flex items-start space-x-3">
-                                    <span class="text-[#D4AC37] text-[13px]"></span>
+                                    <svg class="w-4 h-4 text-[#B48B2E] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2C8.1 2 5 5.1 5 9c0
+                                        5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0
+                                        9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12
+                                        6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/>
+                                    </svg>
                                     <span>
                                         2972 Westheimer Rd. Santa<br/>
                                         Ana, Illinois 85486
                                     </span>
                                 </li>
+
                             </ul>
                         </div>
 
@@ -1368,10 +1420,10 @@
             </div>
         </footer>
 
-        <!-- SCRIPTS -->
+        <!-- JS: cdn leaflet -->
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-        <!-- AOS JS -->
+        <!-- JS: aos js -->
         <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -1388,97 +1440,8 @@
             });
         </script>
 
-        <!-- Custom JS -->
+        <!-- JS: custom js -->
         <script src="{{ asset('js/script.js') }}"></script>
-
-        <!-- Video About Us -->
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-
-                const video = document.getElementById("aboutVideo");
-                const btn   = document.getElementById("videoToggle");
-
-                if (!video || !btn) return;
-
-                btn.addEventListener("click", (e) => {
-                    e.stopPropagation(); // prevent click from triggering other handlers
-
-                    if (video.paused) {
-                        video.play();
-                        btn.innerHTML = "❚❚"; // pause icon
-                    } else {
-                        video.pause();
-                        btn.innerHTML = "▶"; // play icon
-                    }
-                });
-
-            });
-        </script>
-
-        <!-- Testimonials -->
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // Testimonials data
-                const testimonials = @json($testimonialsJs);
-
-                let currentIndex = 0;
-
-                const prevBtn = document.getElementById("prev-testimonial-btn");
-                const nextBtn = document.getElementById("next-testimonial-btn");
-
-                const textEl  = document.getElementById('testimonial-text');
-                const nameEl  = document.getElementById('testimonial-name');
-                const roleEl  = document.getElementById('testimonial-role');
-                const dateEl  = document.getElementById('testimonial-date');
-                const photoEl = document.getElementById('testimonial-photo');
-
-                function applyTestimonial() {
-                    if (!textEl || !nameEl || !roleEl || !photoEl || !dateEl) {
-                        console.warn('Testimonial elements not found.');
-                        return;
-                    }
-
-                    const item = testimonials[currentIndex];
-                    if (!item) return;
-
-                    textEl.textContent  = item.text;
-                    nameEl.textContent  = item.name;
-                    roleEl.textContent  = item.role;
-                    dateEl.textContent  = item.date || '';
-
-                    if (item.photo) {
-                        photoEl.textContent = '';
-                        photoEl.style.backgroundImage    = `url('${item.photo}')`;
-                        photoEl.style.backgroundSize     = 'cover';
-                        photoEl.style.backgroundPosition = 'center';
-                        photoEl.style.backgroundColor    = 'transparent';
-                    } else {
-                        photoEl.innerHTML = '<div class="h-9 w-9 rounded-full bg-[#C1DCDC] text-slate-900 grid place-items-center font-semibold shadow">'+item.initial+'</div>';
-                    }
-                }
-
-                function nextTestimonial() {
-                    currentIndex = (currentIndex + 1) % testimonials.length;
-                    applyTestimonial();
-                }
-
-                function prevTestimonial() {
-                    currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
-                    applyTestimonial();
-                }
-
-                // Connect buttons to functions (WITHOUT onclick in HTML)
-                if (prevBtn) {
-                    prevBtn.addEventListener('click', prevTestimonial);
-                }
-                if (nextBtn) {
-                    nextBtn.addEventListener('click', nextTestimonial);
-                }
-
-                // Initial sync
-                // applyTestimonial();
-            });
-        </script>
 
         <!-- JS: auto-close desktop dropdown -->
         <script>
@@ -1519,6 +1482,30 @@
                     if (e.key === 'Escape' && dd.hasAttribute('open')) close();
                 });
             })();
+        </script>
+
+        <!-- JS: video about us -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+
+                const video = document.getElementById("aboutVideo");
+                const btn   = document.getElementById("videoToggle");
+
+                if (!video || !btn) return;
+
+                btn.addEventListener("click", (e) => {
+                    e.stopPropagation(); // prevent click from triggering other handlers
+
+                    if (video.paused) {
+                        video.play();
+                        btn.innerHTML = "❚❚"; // pause icon
+                    } else {
+                        video.pause();
+                        btn.innerHTML = "▶"; // play icon
+                    }
+                });
+
+            });
         </script>
 
         <!-- JS: programs carousel -->
@@ -1619,6 +1606,151 @@
                 alert.classList.add('opacity-0', 'translate-y-5');
                 setTimeout(() => alert.remove(), 700);
             }, 3000);
+        </script>
+
+        <!-- JS: video detail programs -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const modal = document.getElementById('programModal');
+                if (!modal) return;
+
+                const imgEl      = modal.querySelector('[data-program-modal-image]');
+                const titleEl    = modal.querySelector('[data-program-modal-title]');
+                const catEl      = modal.querySelector('[data-program-modal-category]');
+                const numEl      = modal.querySelector('[data-program-modal-number]');
+                const shortEl    = modal.querySelector('[data-program-modal-short]');
+                const longEl     = modal.querySelector('[data-program-modal-long]');
+                const durationEl = modal.querySelector('[data-program-modal-duration]');
+                const priceEl    = modal.querySelector('[data-program-modal-price]');
+                const regBtn     = modal.querySelector('[data-program-modal-register]');
+
+                function openModal(data) {
+                    if (imgEl && data.image) {
+                        imgEl.src = data.image;
+                    }
+                    if (titleEl)    titleEl.textContent    = data.name || '';
+                    if (catEl)      catEl.textContent      = data.category || 'Program';
+                    if (numEl)      numEl.textContent      = data.number ? ('Program ' + data.number) : '';
+                    if (shortEl)    shortEl.textContent    = data.short || '';
+                    if (longEl)     longEl.textContent     = data.long || '';
+                    if (durationEl) durationEl.textContent = data.duration || '-';
+                    if (priceEl)    priceEl.textContent    = data.price || '-';
+                    if (regBtn && data.registerUrl) {
+                        regBtn.href = data.registerUrl;
+                    }
+
+                    modal.classList.remove('hidden');
+                    document.body.classList.add('overflow-hidden');
+                }
+
+                function closeModal() {
+                    modal.classList.add('hidden');
+                    document.body.classList.remove('overflow-hidden');
+                }
+
+                // Trigger buttons
+                document.querySelectorAll('[data-program-detail-trigger]').forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        const ds = this.dataset;
+                        openModal({
+                            number:      ds.programNo,
+                            name:        ds.programName,
+                            category:    ds.programCategory,
+                            duration:    ds.programDuration,
+                            price:       ds.programPrice,
+                            short:       ds.programShort,
+                            long:        ds.programLong,
+                            image:       ds.programImage,
+                            registerUrl: ds.programRegisterUrl
+                        });
+                    });
+                });
+
+                // Close via buttons + overlay
+                modal.querySelectorAll('[data-program-modal-close],[data-program-modal-overlay]')
+                    .forEach(function (el) {
+                        el.addEventListener('click', closeModal);
+                    });
+
+                // Close on ESC
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                        closeModal();
+                    }
+                });
+            });
+        </script>
+
+        <!-- JS: testimonial carousel -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const testimonials = @json($testimonialsJs);
+
+                if (!Array.isArray(testimonials) || testimonials.length === 0) {
+                    console.warn('No testimonials data available.');
+                    return;
+                }
+
+                let currentIndex = 0;
+
+                const prevBtn = document.getElementById("prev-testimonial-btn");
+                const nextBtn = document.getElementById("next-testimonial-btn");
+
+                const textEl  = document.getElementById('testimonial-text');
+                const nameEl  = document.getElementById('testimonial-name');
+                const roleEl  = document.getElementById('testimonial-role');
+                const dateEl  = document.getElementById('testimonial-date');
+                const photoEl = document.getElementById('testimonial-photo');
+
+                function applyTestimonial() {
+                    const item = testimonials[currentIndex];
+                    if (!item || !textEl || !nameEl || !roleEl || !dateEl || !photoEl) return;
+
+                    textEl.textContent  = `“${item.text}”`;
+                    nameEl.textContent  = item.name || '';
+                    roleEl.textContent  = item.role || 'Program Participant';
+                    dateEl.textContent  = item.date || '';
+
+                    if (item.photo) {
+                        photoEl.innerHTML = `
+                            <img
+                                src="${item.photo}"
+                                class="h-9 w-9 rounded-full object-cover border border-slate-300 shadow-sm"
+                                alt="Avatar"
+                            >
+                        `;
+                    } else {
+                        const initial = item.initial || (item.name ? item.name.charAt(0).toUpperCase() : 'G');
+                        photoEl.innerHTML = `
+                            <div class="h-9 w-9 rounded-full bg-[#C1DCDC] text-slate-900 grid place-items-center font-semibold shadow">
+                                ${initial}
+                            </div>
+                        `;
+                    }
+                }
+
+                function nextTestimonial() {
+                    currentIndex = (currentIndex + 1) % testimonials.length;
+                    applyTestimonial();
+                }
+
+                function prevTestimonial() {
+                    currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+                    applyTestimonial();
+                }
+
+                if (prevBtn) prevBtn.addEventListener('click', prevTestimonial);
+                if (nextBtn) nextBtn.addEventListener('click', nextTestimonial);
+
+                // Kalau hanya 1 testimonial, boleh sekalian disable tombol (opsional)
+                if (testimonials.length <= 1) {
+                    if (prevBtn) prevBtn.classList.add('opacity-40', 'pointer-events-none');
+                    if (nextBtn) nextBtn.classList.add('opacity-40', 'pointer-events-none');
+                }
+
+                // initial render – penting!
+                applyTestimonial();
+            });
         </script>
 
     </body>

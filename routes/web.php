@@ -27,12 +27,18 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::post('/program/store', [AdminController::class, 'programStore'])->name('program.store');
     Route::put('/program/update/{id}', [AdminController::class, 'programUpdate'])->name('program.update');
     Route::delete('/program/delete/{id}', [AdminController::class, 'programDestroy'])->name('program.delete');
+
+    // TESTIMONIAL ROUTES
+    Route::get('/testimonial', [AdminController::class, 'testimonial'])->name('testimonial');
+    Route::get('/testimonial/{id}/edit', [AdminController::class, 'testimonialEdit'])->name('testimonial.edit');
+    Route::put('/testimonial/{id}', [AdminController::class, 'testimonialUpdate'])->name('testimonial.update');
+    Route::patch('/testimonial/{id}/toggle', [AdminController::class, 'testimonialToggleVisibility'])->name('testimonial.toggle');
 });
 
 Route::middleware(['auth', 'role:user'])->group(function () {
     // HOME ROUTES
     Route::get('/home', [UserController::class, 'userHome'])->name('home');
-    Route::get('/registerProgram/{programName}', [UserController::class, 'userRegisterProgram'])->name('registerProgram');
+    Route::get('/register-program/{program:slug}', [UserController::class, 'userRegisterProgram'])->name('register-program');
     Route::get('/testimonial', [UserController::class, 'userTestimonial'])->name('testimonial');
     Route::post('/submit-testimonial', [UserController::class, 'userSubmitTestimonial'])->name('submit-testimonial');
     Route::get('/submit-contact', [UserController::class, 'userSubmitContact'])->name('submit-contact');
