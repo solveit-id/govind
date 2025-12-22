@@ -1007,11 +1007,6 @@
                         @php
                             $firstTestimonial = $testimonials->first();
                             $firstAvatarUrl = null;
-
-                            if ($firstTestimonial && $firstTestimonial->img) {
-                                // img sudah disiapkan di DB, cukup bungkus asset()
-                                $firstAvatarUrl = asset($firstTestimonial->img);
-                            }
                         @endphp
 
                         <div class="bg-gradient-to-br from-[#E8F4F3] via-[#D0E7E6] to-[#C4DEDD]
@@ -1037,7 +1032,10 @@
                             </div>
 
                             {{-- QUOTE TEXT (akan dioverwrite JS, tapi ada fallback kalau nggak ada data) --}}
-                            <p id="testimonial-text" class="text-sm md:text-[15px] text-slate-800 leading-relaxed">
+                            <p id="testimonial-text"
+                                class="text-sm md:text-[15px] text-slate-800 leading-relaxed
+                                        min-h-[4.8em] line-clamp-3"
+                                >
                                 @if($firstTestimonial)
                                     “{{ $firstTestimonial->text }}”
                                 @else
@@ -1711,7 +1709,7 @@
                     roleEl.textContent  = item.role || 'Program Participant';
                     dateEl.textContent  = item.date || '';
 
-                    if (item.photo) {
+                    if (false) {
                         photoEl.innerHTML = `
                             <img
                                 src="${item.photo}"

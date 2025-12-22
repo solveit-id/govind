@@ -59,10 +59,17 @@
         <form
           action="{{ route('login') }}"
           method="POST"
-          class="w-full space-y-5"
+          class="w-full space-y-3"
         >
           @csrf
+          @error('email')
+            <div class="text-red-500 text-sm mb-1 italic">{{ $message }}</div>
+          @enderror
 
+          @if(session('error'))
+            <div class="text-red-500 text-sm mb-1 italic">{{ session('error') }}</div>
+          @endif
+          
           <!-- Email -->
           <div
             class="relative"
@@ -87,13 +94,17 @@
                 />
               </svg>
             </span>
+            
             <input
               id="email"
               type="email"
               name="email"
               placeholder="Email Address"
               required
-              class="w-full pl-10 pr-4 py-2 rounded-xl border border-[#C1DCDC] focus:ring-2 focus:ring-[#285E5E] focus:outline-none bg-white/80 transition-all duration-300 placeholder:text-gray-400"
+              value="{{ old('email') }}"
+              class="w-full pl-10 pr-4 py-2 rounded-xl border border-[#C1DCDC] 
+              @error('email') border-red-500 @enderror
+              focus:ring-2 focus:ring-[#285E5E] focus:outline-none bg-white/80 transition-all duration-300 placeholder:text-gray-400"
             />
           </div>
 
@@ -127,7 +138,9 @@
               name="password"
               placeholder="Password"
               required
-              class="w-full pl-10 pr-4 py-2 rounded-xl border border-[#C1DCDC] focus:ring-2 focus:ring-[#285E5E] focus:outline-none bg-white/80 transition-all duration-300 placeholder:text-gray-400"
+              class="w-full pl-10 pr-4 py-2 rounded-xl border border-[#C1DCDC]
+              @error('email') border-red-500 @enderror
+              focus:ring-2 focus:ring-[#285E5E] focus:outline-none bg-white/80 transition-all duration-300 placeholder:text-gray-400"
             />
           </div>
 

@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Validation\ValidationException;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -24,11 +25,19 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        try {
+            $request->authenticate();
 
-        $request->session()->regenerate();
+            $request->session()->regenerate();
 
         return redirect()->intended(route('admin.home', absolute: false));
+        } catch (ValidationException $e) {
+            return back()
+                ->withErrors([ 
+                    'email' => 'Email atau password salah.',
+                ])
+                ->withInput($request->only('email'));
+        }
     }
 
     /**

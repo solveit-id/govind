@@ -43,12 +43,7 @@ class RegisteredUserController extends Controller
 
         if ($request->hasFile('img')) {
             $file = $request->file('img');
-
-            // Nama file unik
             $filename = time() . '-' . uniqid() . '.' . $file->getClientOriginalExtension();
-
-            // Simpan ke disk 'public' di folder 'users'
-            // => storage/app/public/users/xxx.jpg
             Storage::disk('public')->putFileAs('users', $file, $filename);
         }
 

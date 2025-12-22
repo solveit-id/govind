@@ -72,10 +72,19 @@
           </p>
 
           <div class="mt-4 inline-flex items-center gap-3 rounded-2xl bg-white/80 px-4 py-3 text-xs text-[#285E5E] shadow">
-            <div
-              class="h-8 w-8 rounded-full bg-[#C1DCDC] text-[#1E4B4B] grid place-items-center font-semibold"
-            >
-              {{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::substr($user->name, 0, 1)) }}
+            <div class="h-8 w-8 rounded-full overflow-hidden grid place-items-center
+            bg-[#C1DCDC] text-[#1E4B4B] font-semibold">
+
+                @if ($user->img)
+                    <img
+                        src="{{ asset('storage/users/' . $user->img) }}"
+                        alt="Profile photo"
+                        class="h-full w-full object-cover"
+                    >
+                @else
+                    {{ strtoupper(substr($user->name, 0, 1)) }}
+                @endif
+
             </div>
             <div class="text-left leading-tight">
               <div class="font-semibold text-[13px]">{{ $user->name }}</div>
