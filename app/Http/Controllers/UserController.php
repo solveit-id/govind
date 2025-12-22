@@ -81,7 +81,7 @@ class UserController extends Controller
     public function userSubmitTestimonial(Request $request) {
         $user = Auth::user();
         if (! $user) {
-            abort(403, 'You must be logged in to submit testimonial.');
+            return redirect()->route('login')->with('error', 'Please login first to submit a testimonial.');
         }
 
         $data = $request->validate([
@@ -102,7 +102,7 @@ class UserController extends Controller
         ]);
 
         return redirect()
-            ->route('user.home')
+            ->route('home')
             ->with('success', 'Thank you for your testimonial!');
     }
 

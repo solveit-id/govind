@@ -81,9 +81,23 @@
             action="{{ route('register') }}"
             method="POST"
             enctype="multipart/form-data"
-            class="w-full space-y-7"
+            class="w-full space-y-4"
         >
             @csrf
+            @if ($errors->any())
+                <div class="text-red-500 text-sm mb-1 italic">
+                    @foreach($errors->all() as $key => $error)
+                    @php
+                        $isLast = !isset($errors->all()[$key + 1]);
+                    @endphp
+                    @if($isLast)
+                        {{ $error }} 
+                    @else
+                        {{ $error }} <br>
+                    @endif
+                    @endforeach
+                </div>
+            @endif
 
             <!-- GRID 3 LEFT & 3 RIGHT -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -98,7 +112,9 @@
                     name="name"
                     placeholder="Full Name"
                     required
+                    value="{{ old('name') }}"
                     class="w-full pl-4 pr-4 py-2 rounded-xl border border-[#C1DCDC]
+                    @error('name') border-red-500 @enderror
                     focus:ring-2 focus:ring-[#285E5E] bg-white/80 transition-all
                     duration-300 placeholder:text-gray-400"
                 />
@@ -112,7 +128,9 @@
                     name="email"
                     placeholder="Email Address"
                     required
+                    value="{{ old(key: 'email') }}"
                     class="w-full pl-4 pr-4 py-2 rounded-xl border border-[#C1DCDC]
+                    @error('email') border-red-500 @enderror
                     focus:ring-2 focus:ring-[#285E5E] bg-white/80 transition-all
                     duration-300 placeholder:text-gray-400"
                 />
@@ -126,7 +144,9 @@
                     name="phone"
                     placeholder="Phone Number"
                     required
+                    value="{{ old(key: 'phone') }}"
                     class="w-full pl-4 pr-4 py-2 rounded-xl border border-[#C1DCDC]
+                    @error('phone') border-red-500 @enderror
                     focus:ring-2 focus:ring-[#285E5E] bg-white/80 transition-all
                     duration-300 placeholder:text-gray-400"
                 />
@@ -143,7 +163,9 @@
                     name="address"
                     placeholder="Full Address"
                     required
+                    value="{{ old('address') }}"
                     class="w-full pl-4 pr-4 py-2 rounded-xl border border-[#C1DCDC]
+                    @error('address') border-red-500 @enderror
                     focus:ring-2 focus:ring-[#285E5E] bg-white/80 transition-all
                     duration-300 placeholder:text-gray-400"
                 />
@@ -158,6 +180,7 @@
                     placeholder="Password"
                     required
                     class="w-full pl-4 pr-4 py-2 rounded-xl border border-[#C1DCDC]
+                    @error('password') border-red-500 @enderror
                     focus:ring-2 focus:ring-[#285E5E] bg-white/80 transition-all
                     duration-300 placeholder:text-gray-400"
                 />
@@ -172,6 +195,8 @@
                     placeholder="Confirm Password"
                     required
                     class="w-full pl-4 pr-4 py-2 rounded-xl border border-[#C1DCDC]
+                    @error('password_confirmation') border-red-500 @enderror
+                    @error('password') border-red-500 @enderror
                     focus:ring-2 focus:ring-[#285E5E] bg-white/80 transition-all
                     duration-300 placeholder:text-gray-400"
                 />
@@ -183,6 +208,7 @@
             <div class="space-y-2" data-aos="fade-up" data-aos-delay="750">
             <div
                 class="flex items-center gap-3 px-4 py-3 rounded-xl border border-dashed border-[#C1DCDC]
+                @error('img') border-red-500 @enderror
                 bg-white/70 hover:bg-white/90 cursor-pointer transition-all duration-300"
                 onclick="document.getElementById('img').click()"
             >
